@@ -329,9 +329,7 @@ final class ZohoCRMHandler
             $newDetails->default->layouts->{$others['queryModule']} = $others['layouts'];
         }
 
-        // var_dump($newDetails);
-
-        $integrationHandler->updateIntegration($integrationID, $zcrmDetails[0]->integration_name, 'Zoho CRM', \json_encode($newDetails), 'form');
+        $integrationHandler->updateIntegration($integrationID, $zcrmDetails[0]->integration_name, 'Zoho CRM', \json_encode($newDetails), 'integration');
     }
 
     public static function registerHooks()
@@ -464,6 +462,7 @@ final class ZohoCRMHandler
 
     public function execute(IntegrationHandler $integrationHandler, $integrationData, $fieldValues)
     {
+        print_r('exc');
         $integrationDetails = is_string($integrationData->integration_details) ? json_decode($integrationData->integration_details) : $integrationData->integration_details;
 
         $tokenDetails = $integrationDetails->tokenDetails;

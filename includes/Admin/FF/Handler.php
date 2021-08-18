@@ -7,6 +7,7 @@ use BitCode\BITFFZC\Integration\IntegrationHandler;
 use BitCode\BITFFZC\Integration\Integrations;
 use FluentForm\App\Api\FormProperties;
 use FluentForm\App\Modules\Form\FormFieldsParser;
+
 final class Handler
 {
     public function __construct()
@@ -15,15 +16,19 @@ final class Handler
     }
 
 
-    public static function filter_wpcf7_form_hidden_fields($hidden_fields)
+    public static function fluentform_rendering_form($form)
     {
-        $current_form_id = \wpcf7_get_current_contact_form()->id();
-        $gclidHandler = new GclidHandler();
-        $gclid_enabled = $gclidHandler->get_enabled_form_lsit();
-        if (in_array($current_form_id, $gclid_enabled)) {
-            $hidden_fields['gclid'] = isset($_REQUEST['gclid']) ? \esc_attr($_REQUEST['gclid']) :  '';
-        }
-        return $hidden_fields;
+        $fields = $form->fields['fields'];
+        $gclid_field['index'] = count($fields);
+        $gclid_field['element'] = 'input_hidden';
+        
+        
+        $gclid_field['attributes']['type'] = 'hidden';
+        $gclid_field['attributes']['name'] = 'gclid';
+        $gclid_field['attributes']['value'] = isset($_GET['gclid']) ? sanitize_text_field($_GET['gclid']) : '';
+        
+        $form->fields['fields'][] = $gclid_field;
+        return $form;
     }
 
     public function get_a_form($data)
@@ -32,7 +37,7 @@ final class Handler
             wp_send_json_error(__('Form doesn\'t exists', 'bitffzc'));
         }
         $form = wpFluent()->table('fluentform_forms')->where('id', $data->formId)->first();
-        // $formProperties = new FormProperties($form);
+        
         $fieldDetails = FormFieldsParser::getFields($form);
         if (empty($fieldDetails)) {
             wp_send_json_error(__('Form doesn\'t exists', 'bitffzc'));
@@ -41,15 +46,20 @@ final class Handler
         $fields = [];
         foreach ($fieldDetails as  $field) {
             if (isset($field->fields)) {
-                var_dump($field->fields);
+                $name = isset($field->attributes->name) ? $field->attributes->name . "=>" : '';
+                foreach ($field->fields as $singleField) {
+                    $fields[] = [
+                                    'name' => $name . $singleField->attributes->name,
+                                    'type' => isset($singleField->attributes->type) ? $singleField->attributes->type : $singleField->element,
+                                    'label' => $singleField->settings->label,
+                                ];
+                }
             } else {
-                
-            }
-            if (!empty($field->name) && $field->type !== 'submit') {
+                $attributes = $field->attributes;
                 $fields[] = [
-                    'name' => $field->name,
-                    'type' => $field->basetype,
-                    'label' => !empty($field->labels) ? $field->labels[0] : $field->name,
+                    'name' => $attributes->name,
+                    'type' => isset($attributes->type) ? $attributes->type : $field->element,
+                    'label' => $field->settings->label,
                 ];
             }
         }
@@ -81,27 +91,11 @@ final class Handler
         wp_send_json_success($responseData);
     }
 
-    public static function handle_wpcf7_submit($form, $response)
+    public static function handle_ff_submit($entryId, $formData, $form)
     {
-        $submission = \WPCF7_Submission::get_instance();
-
-        if (!$submission || !$posted_data = $submission->get_posted_data()) {
-            return;
-        }
-        if (!$submission->is('mail_failed') && !$submission->is('mail_sent')) {
-            return;
-        }
-
-        if (isset($posted_data['_wpcf7'])) {
-            $form_id = $posted_data['_wpcf7'];
-        } else {
-            $current_form = \WPCF7_ContactForm::get_current();
-            $form_id = $current_form->id();
-        }
-        $files = $submission->uploaded_files();
-        $posted_data = array_merge($posted_data, $files);
+        $form_id = $form->id;
         if (!empty($form_id)) {
-            Integrations::executeIntegrations($form_id, $posted_data);
+            Integrations::executeIntegrations($form_id, $formData);
         }
     }
 }

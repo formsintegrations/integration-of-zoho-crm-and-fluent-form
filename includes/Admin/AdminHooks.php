@@ -15,9 +15,9 @@ class AdminHooks
             if ($dirInfo->isDir()) {
                 $serviceName = basename($dirInfo);
                 if (file_exists(__DIR__.'/'.$serviceName)
-                && file_exists(__DIR__.'/'.$serviceName.'/Hooks.php')
+                    && file_exists(__DIR__.'/'.$serviceName.'/Hooks.php')
                 ) {
-                    $hooks = "BitCode\\bitffzc\\Admin\\{$serviceName}\\Hooks";
+                    $hooks = "BitCode\\BITFFZC\\Admin\\{$serviceName}\\Hooks";
                     if (method_exists($hooks, 'registerHooks')) {
                         (new $hooks())->registerHooks();                    
                     }

@@ -13,8 +13,8 @@ final class Hooks{
     public function registerHooks()
     {
         if (Request::Check('frontend')) {
-            add_action('wpcf7_submit', [Handler::class, 'handle_wpcf7_submit'], 10, 2);
-            add_filter('wpcf7_form_hidden_fields', [Handler::class, 'filter_wpcf7_form_hidden_fields'], 10, 1 ); 
+            add_action('fluentform_submission_inserted', [Handler::class, 'handle_ff_submit'], 10, 3);
+            add_filter('fluentform_rendering_form', [Handler::class, 'fluentform_rendering_form'], 10, 1);
         }
     }
 } 

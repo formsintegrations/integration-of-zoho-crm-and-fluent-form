@@ -61,10 +61,17 @@ class RecordApiHelper
                 }
                 if ($fieldPair->formField === 'custom' && isset($fieldPair->customValue)) {
                     $fieldData[$fieldPair->zohoFormField] = $this->formatFieldValue($fieldPair->customValue, $defaultConf->layouts->{$module}->{$layout}->fields->{$fieldPair->zohoFormField});
+                } else if (strpos($fieldPair->formField, '=>') !== false) {
+                    $formFieldValue = null;
+                    foreach (explode('=>', $fieldPair->formField) as $key => $value) {
+                        $formFieldValue = !isset($formFieldValue) ? $fieldValues[$value] : $formFieldValue[$value];
+                    }
+                    if (!is_null($formFieldValue)) {
+                        $fieldData[$fieldPair->zohoFormField] = $this->formatFieldValue($formFieldValue, $defaultConf->layouts->{$module}->{$layout}->fields->{$fieldPair->zohoFormField});
+                    }
                 } else {
                     $fieldData[$fieldPair->zohoFormField] = $this->formatFieldValue($fieldValues[$fieldPair->formField], $defaultConf->layouts->{$module}->{$layout}->fields->{$fieldPair->zohoFormField});
                 }
-
                 if (empty($fieldData[$fieldPair->zohoFormField]) && \in_array($fieldPair->zohoFormField, $required)) {
                     $error = new WP_Error('REQ_FIELD_EMPTY', wp_sprintf(__('%s is required for zoho crm, %s module', 'bitffzc'), $fieldPair->zohoFormField, $module));
                     Log::save($formID, $integId, wp_json_encode(['type' => 'record', 'type_name' => 'field']), 'validation', wp_json_encode($error));
