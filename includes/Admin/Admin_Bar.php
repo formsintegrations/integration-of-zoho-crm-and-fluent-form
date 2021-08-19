@@ -35,7 +35,7 @@ class Admin_Bar
      */
     public function AdminAssets($current_screen)
     {
-        if (strpos($current_screen, 'bitffzc') === false) {
+        if (strpos($current_screen, 'bitffzc') === false || defined('BITFFZCPRO_ASSET_URI')) {
             return;
         }
         $parsed_url = parse_url(get_admin_url());

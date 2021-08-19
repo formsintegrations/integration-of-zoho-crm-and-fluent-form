@@ -62,7 +62,7 @@ const AllFormContextProvider = (props) => {
     && typeof bitffzc !== 'undefined'
     && bitffzc.allForms !== null) {
     allFormsInitialState = bitffzc?.allForms?.map(form => (
-      { formID: form.id, status: form.gclid, formName: form.title, shortcode: `contact-form-7 id='${form.id}' title='${form.title}'`}))
+      { formID: form.id, status: form.gclid, formName: form.title, shortcode: `fluentform id='${form.id}'`}))
   }
   const [allForms, allFormsDispatchHandler] = useReducer(AllFormsDispatchHandler, allFormsInitialState)
 

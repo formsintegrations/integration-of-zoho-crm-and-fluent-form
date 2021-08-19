@@ -9,8 +9,6 @@ namespace BitCode\BITFFZC\Integration\ZohoCRM;
 
 use WP_Error;
 use BitCode\BITFFZC\Core\Util\HttpHelper;
-use BitCode\BITFFZC\Integration\ZohoCRM\TagApiHelper;
-use BitCode\BITFFZC\Integration\ZohoCRM\MetaDataApiHelper;
 use BitCode\BITFFZC\Integration\ZohoCRM\RecordApiHelper;
 use BitCode\BITFFZC\Integration\IntegrationHandler;
 use BitCode\BITFFZC\Core\Util\IpTool;
@@ -178,6 +176,7 @@ final class ZohoCRMHandler
             $layoutsMetaResponse = HttpHelper::get($layoutsMetaApiEndpoint, $requiredParams, $authorizationHeader);
             if (!is_wp_error($layoutsMetaResponse) && (empty($layoutsMetaResponse->status) || (!empty($layoutsMetaResponse->status) && $layoutsMetaResponse->status !== 'error'))) {
                 $retriveLayoutsData = $layoutsMetaResponse->layouts;
+                $fieldToShow = ['Email','First_Name','Last_Name','Phone'];
                 $layouts = [];
                 foreach ($retriveLayoutsData as $layoutKey => $layoutValue) {
                     if ($layoutValue->name !== 'Standard') {
@@ -193,6 +192,7 @@ final class ZohoCRMHandler
                             if (
                                 empty($fieldDetails->subform)
                                 && !empty($fieldDetails->api_name)
+                                && in_array($fieldDetails->api_name, $fieldToShow)
                                 && !empty($fieldDetails->view_type->create)
                                 && $fieldDetails->view_type->create
                                 && $fieldDetails->data_type !== 'ownerlookup'
@@ -337,132 +337,8 @@ final class ZohoCRMHandler
         add_filter('bitffzc_addRelatedList', array(__CLASS__, 'addRelatedList'), 10, 6);
     }
 
-    /**
-     * Process ajax request to get assignment rules of a Zoho CRM module
-     *
-     * @return JSON crm assignment rules data
-     */
-    public static function getAssignmentRulesAjaxHelper()
-    {
-        if (isset($_REQUEST['_ajax_nonce']) && wp_verify_nonce(\sanitize_text_field($_REQUEST['_ajax_nonce']), 'bitffzc_nonce')) {
-            $inputJSON = file_get_contents('php://input');
-            $queryParams = json_decode($inputJSON);
-            if (
-                empty($queryParams->module)
-                || empty($queryParams->tokenDetails)
-                || empty($queryParams->dataCenter)
-                || empty($queryParams->clientId)
-                || empty($queryParams->clientSecret)
-            ) {
-                wp_send_json_error(
-                    __(
-                        'Requested parameter is empty',
-                        'bitffzc'
-                    ),
-                    400
-                );
-            }
-            $response = [];
-            if ((intval($queryParams->tokenDetails->generates_on) + (55 * 60)) < time()) {
-                $response['tokenDetails'] = self::_refreshAccessToken($queryParams);
-            }
-            $metaDataApiHelper = new MetaDataApiHelper($queryParams->tokenDetails, true);
-            $assignmentRulesResponse = $metaDataApiHelper->getAssignmentRules($queryParams->module);
-            if (
-                !is_wp_error($assignmentRulesResponse)
-                && !empty($assignmentRulesResponse)
-                && empty($assignmentRulesResponse->status)
-            ) {
-                uksort($assignmentRulesResponse, 'strnatcasecmp');
-                $response["assignmentRules"] = $assignmentRulesResponse;
-            } else {
-                wp_send_json_error(
-                    !empty($assignmentRulesResponse->status)
-                        && $assignmentRulesResponse->status === 'error' ?
-                        $assignmentRulesResponse->message : (empty($assignmentRulesResponse) ? __('Assignment rules is empty', 'bitffzc') : 'Unknown'),
-                    empty($assignmentRulesResponse) ? 204 : 400
-                );
-            }
-            if (!empty($response['tokenDetails']) && $response['tokenDetails'] && !empty($queryParams->id)) {
-                // $response["queryModule"] = $queryParams->module;
-                static::_saveRefreshedToken($queryParams->formID, $queryParams->id, $response['tokenDetails'], $response);
-            }
-            wp_send_json_success($response, 200);
-        } else {
-            wp_send_json_error(
-                __(
-                    'Token expired',
-                    'bitffzc'
-                ),
-                401
-            );
-        }
-    }
-    /**
-     * Process ajax request to get realted lists of a Zoho CRM module
-     *
-     * @return JSON crm layout data
-     */
-    public static function getRelatedListsAjaxHelper()
-    {
-        if (isset($_REQUEST['_ajax_nonce']) && wp_verify_nonce(sanitize_text_field($_REQUEST['_ajax_nonce']), 'bitffzc_nonce')) {
-            $inputJSON = file_get_contents('php://input');
-            $queryParams = json_decode($inputJSON);
-            if (
-                empty($queryParams->module)
-                || empty($queryParams->tokenDetails)
-                || empty($queryParams->dataCenter)
-                || empty($queryParams->clientId)
-                || empty($queryParams->clientSecret)
-            ) {
-                wp_send_json_error(
-                    __(
-                        'Requested parameter is empty',
-                        'bitffzc'
-                    ),
-                    400
-                );
-            }
-            $response = [];
-            if ((intval($queryParams->tokenDetails->generates_on) + (55 * 60)) < time()) {
-                $response['tokenDetails'] = static::_refreshAccessToken($queryParams);
-            }
-            $metaDataApiHelper = new MetaDataApiHelper($queryParams->tokenDetails);
-            $relatedListResponse = $metaDataApiHelper->getRelatedLists($queryParams->module);
-            if (
-                !is_wp_error($relatedListResponse)
-                && !empty($relatedListResponse)
-                && empty($relatedListResponse->status)
-            ) {
-                uksort($relatedListResponse, 'strnatcasecmp');
-                $response["relatedLists"] = $relatedListResponse;
-            } else {
-                wp_send_json_error(
-                    !empty($relatedListResponse->status)
-                        && $relatedListResponse->status === 'error' ?
-                        $relatedListResponse->message : (empty($relatedListResponse) ? __('RelatedList is empty', 'bitffzc') : 'Unknown'),
-                    empty($relatedListResponse) ? 204 : 400
-                );
-            }
-            if (!empty($response['tokenDetails']) && $response['tokenDetails'] && !empty($queryParams->id)) {
-                // $response["queryModule"] = $queryParams->module;
-                static::_saveRefreshedToken($queryParams->formID, $queryParams->id, $response['tokenDetails'], $response);
-            }
-            wp_send_json_success($response, 200);
-        } else {
-            wp_send_json_error(
-                __(
-                    'Token expired',
-                    'bitffzc'
-                ),
-                401
-            );
-        }
-    }
-
     public function execute(IntegrationHandler $integrationHandler, $integrationData, $fieldValues)
     {
-        print_r('exc');
         $integrationDetails = is_string($integrationData->integration_details) ? json_decode($integrationData->integration_details) : $integrationData->integration_details;
 
         $tokenDetails = $integrationDetails->tokenDetails;

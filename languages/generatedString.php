@@ -171,9 +171,13 @@ $bitffzc_i18n_strings = array(
 
     'Select Field' => __('Select Field', 'bitffzc'),
 
+    'More fields on the Pro version' => __('More fields on the Pro version', 'bitffzc'),
+
     'Module:' => __('Module:', 'bitffzc'),
 
     'Select Module' => __('Select Module', 'bitffzc'),
+
+    'More module on the Pro version' => __('More module on the Pro version', 'bitffzc'),
 
     'Refresh CRM Modules' => __('Refresh CRM Modules', 'bitffzc'),
 
@@ -188,6 +192,8 @@ $bitffzc_i18n_strings = array(
     'Layout:' => __('Layout:', 'bitffzc'),
 
     'Select Layout' => __('Select Layout', 'bitffzc'),
+
+    'More layouts on the Pro version' => __('More layouts on the Pro version', 'bitffzc'),
 
     'Refresh CRM Layouts' => __('Refresh CRM Layouts', 'bitffzc'),
 

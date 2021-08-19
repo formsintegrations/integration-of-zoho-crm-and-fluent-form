@@ -57,6 +57,7 @@ export default function ZohoCRMFieldMap({ i, formFields, uploadFields, field, cr
                 )
             ))
           }
+          <option value="" disabled>{__('More fields on the Pro version', 'bitffzc')}</option>
         </select>
       </div>
 

@@ -64,10 +64,10 @@ final class Integrations
      */
     protected static function isExists($name)
     {
-        if (file_exists(__DIR__ . '/' . $name) && file_exists(__DIR__ . '/' . $name . '/' . $name . 'Handler.php')) {
+        if (class_exists("BitCode\\BITFFZCPRO\\Integration\\{$name}\\{$name}Handler")) {
+            return "BitCode\\BITFFZCPRO\\Integration\\{$name}\\{$name}Handler";
+        } else if (file_exists(__DIR__ . '/' . $name) && file_exists(__DIR__ . '/' . $name . '/' . $name . 'Handler.php')) {
             return __NAMESPACE__ . "\\{$name}\\{$name}Handler";
-        } elseif (class_exists("BitCode\\bitffzcPro\\Integration\\{$name}\\{$name}Handler")) {
-            return "BitCode\\bitffzcPro\\Integration\\{$name}\\{$name}Handler";
         } else {
             return false;
         }
@@ -116,10 +116,10 @@ final class Integrations
         $integrationName = !empty($data->name) ? $data->name : '';
         $integrationType = $data->type;
         $integrationId = $data->id;
+        $integrationHandler = new IntegrationHandler($data->formId);
         unset($data->type, $data->name, $data->formId);
         $integrationDetails = wp_json_encode($data);
         $integrationCategory = 'integration';
-        $integrationHandler = new IntegrationHandler($data->formId);
         $updateStatus = $integrationHandler->updateIntegration($integrationId, $integrationName, $integrationType, $integrationDetails, $integrationCategory);
         if (is_wp_error($updateStatus) && $updateStatus->get_error_code() !== 'result_empty') {
             wp_send_json_error($updateStatus->get_error_message());

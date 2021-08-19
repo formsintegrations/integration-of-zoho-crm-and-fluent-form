@@ -28,17 +28,17 @@ define('BITFFZC_VERSION', '1.0.0');
 define('BITFFZC_PLUGIN_MAIN_FILE', __FILE__);
 
 
+var_dump('da');
 function bitffNotFound()
 {
-    wp_die('fsd');
     if (!function_exists('wpFluent') || !is_callable('wpFluent')) {
         echo '<div class="error"><p>Fluent Form  plugin is required<p></div>';
     }
 }
+add_action('admin_notices', 'bitffNotFound');
 add_action(
     'plugins_loaded',
     function () {
-        add_action('admin_notices', 'bitffNotFound');
         include_once plugin_dir_path(__FILE__) . 'includes/loader.php';
     }
 );

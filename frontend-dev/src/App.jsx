@@ -13,7 +13,6 @@ import Loader from './components/Loaders/Loader'
 import logo from './resource/img/integ/crm.svg'
 import Integrations from "./components/Integrations"
 import TableLoader from './components/Loaders/TableLoader'
-import formLogo from '../bit-form.png'
 
 const AllForms = lazy(() => import('./pages/AllForms'))
 const Error404 = lazy(() => import('./pages/Error404'))
@@ -43,12 +42,6 @@ function App() {
                   {__('My Forms', 'bitffzc')}
                 </NavLink>
               </nav>
-              <div className="flx" title={`Bit Form – WordPress Drag & Drop Contact Form, Payment Form Builder`} style={{flexFlow:'row-reverse', flexGrow:3}}>
-                <a href="https://wordpress.org/plugins/bit-form" className="flx white">
-                  <span className="ml-2">Powered By Bit Form</span>
-                  <img src={formLogo} alt="logo" className="ml-2" height='25px'/>
-                </a>
-              </div>
             </div>
           </div>
 

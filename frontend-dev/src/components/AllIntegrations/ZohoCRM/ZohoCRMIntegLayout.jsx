@@ -43,6 +43,7 @@ export default function ZohoCRMIntegLayout({ tab, settab, formID, formFields, ha
             </option>
           ))
         }
+        <option value="" disabled>{__('More module on the Pro version', 'bitffzc')}</option>
       </select>
       {tab === 0 && <button onClick={() => refreshModules(formID, crmConf, setCrmConf, setisLoading, setSnackbar)} className="icn-btn sh-sm ml-2 mr-2 tooltip" style={{ '--tooltip-txt': `'${__('Refresh CRM Modules', 'bitffzc')}'` }} type="button" disabled={isLoading}>&#x21BB;</button>}
       <br />

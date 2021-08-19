@@ -7,7 +7,6 @@ namespace BitCode\BITFFZC;
  * @since 1.0.0-alpha
  */
 use BitCode\BITFFZC\Core\Database\DB;
-use BitCode\BITFFZC\Core\Update\Updater;
 use BitCode\BITFFZC\Admin\Admin_Bar;
 use BitCode\BITFFZC\Admin\AdminHooks;
 use BitCode\BITFFZC\Core\Util\Request;

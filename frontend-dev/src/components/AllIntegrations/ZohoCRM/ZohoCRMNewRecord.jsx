@@ -38,6 +38,7 @@ export default function ZohoCRMNewRecord({ tab, settab, formID, formFields, crmC
             </option>
           ))
         }
+        <option value="" disabled>{__('More layouts on the Pro version', 'bitffzc')}</option>
       </select>
       <button onClick={() => refreshLayouts(tab, formID, crmConf, setCrmConf, setisLoading, setSnackbar)} className="icn-btn sh-sm ml-2 mr-2 tooltip" style={{ '--tooltip-txt': `'${__('Refresh CRM Layouts', 'bitffzc')}'` }} type="button" disabled={isLoading}>&#x21BB;</button>
       <br />
