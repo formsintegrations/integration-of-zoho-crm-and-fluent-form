@@ -15,22 +15,6 @@ final class Handler
         //
     }
 
-
-    public static function fluentform_rendering_form($form)
-    {
-        $fields = $form->fields['fields'];
-        $gclid_field['index'] = count($fields);
-        $gclid_field['element'] = 'input_hidden';
-        
-        
-        $gclid_field['attributes']['type'] = 'hidden';
-        $gclid_field['attributes']['name'] = 'gclid';
-        $gclid_field['attributes']['value'] = isset($_GET['gclid']) ? sanitize_text_field($_GET['gclid']) : '';
-        
-        $form->fields['fields'][] = $gclid_field;
-        return $form;
-    }
-
     public function get_a_form($data)
     {
         if (empty($data->formId)) {

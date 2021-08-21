@@ -28,8 +28,8 @@ The prerequisites you need to use our plug-in :
 
 ⚙  Integration Setup:
 
- ✔ Install & activate CF7 to Zoho CRM plugin.
- ✔ Install & activate Contact Form7 plugin.
+ ✔ Install & activate Fluent Form plugin.
+ ✔ Install & activate Zoho CRM plugin.
  ✔ For Client id & Secret press Zoho API console.
  ✔ From Zoho CRM  settings enter Integration Name, Data Center, Homepage URL, and Authorized Redirect URL & you will get id & secret.
  ✔  Authorize your site.
@@ -58,7 +58,7 @@ Actions are -  Workflow, Attachment, Approval list, BluePrint, GCLID, Upsert Rec
 📹 For video tutorial visit our [Channel]().
 
 🎉 Key Benefits of Plugin :
-Using  CF7 to Zoho CRM plugin, you can manage your customers, sales, and leads.When a customer submit form on your site, it will be saved as leads or contact in to ZOHO CRM automatically.You can see the information in real time. This gives your business a simple and powerful solution to managing your contacts.
+Using  Fluent Form to Zoho CRM plugin, you can manage your customers, sales, and leads.When a customer submit form on your site, it will be saved as leads or contact in to ZOHO CRM automatically.You can see the information in real time. This gives your business a simple and powerful solution to managing your contacts.
 
 
 ✨ Overview of other products we are offering :

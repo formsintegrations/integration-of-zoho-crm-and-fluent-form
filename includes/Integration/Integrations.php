@@ -64,9 +64,7 @@ final class Integrations
      */
     protected static function isExists($name)
     {
-        if (class_exists("BitCode\\BITFFZCPRO\\Integration\\{$name}\\{$name}Handler")) {
-            return "BitCode\\BITFFZCPRO\\Integration\\{$name}\\{$name}Handler";
-        } else if (file_exists(__DIR__ . '/' . $name) && file_exists(__DIR__ . '/' . $name . '/' . $name . 'Handler.php')) {
+        if (file_exists(__DIR__ . '/' . $name) && file_exists(__DIR__ . '/' . $name . '/' . $name . 'Handler.php')) {
             return __NAMESPACE__ . "\\{$name}\\{$name}Handler";
         } else {
             return false;

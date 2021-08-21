@@ -1,7 +1,7 @@
 {
   "name": "Integration of Zoho CRM For Fluent Form",
   "version": "1.0.0",
-  "short_name": "CF7-Zoho CRM",
+  "short_name": "FF-Zoho CRM",
   "description": "Sends Fluent Form entries to Zoho CRM",
   "icons": [
     {

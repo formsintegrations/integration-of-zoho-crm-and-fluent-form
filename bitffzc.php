@@ -28,7 +28,7 @@ define('BITFFZC_VERSION', '1.0.0');
 define('BITFFZC_PLUGIN_MAIN_FILE', __FILE__);
 
 
-var_dump('da');
+// var_dump('da');
 function bitffNotFound()
 {
     if (!function_exists('wpFluent') || !is_callable('wpFluent')) {
