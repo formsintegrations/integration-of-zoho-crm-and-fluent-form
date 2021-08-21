@@ -34,7 +34,7 @@ final class Plugin
      */
     public function initialize()
     {
-        $this->init_plugin();
+        add_action('plugins_loaded', [$this, 'init_plugin'], 11);
         (new Activation())->activate();
         (new Deactivation())->register();
         (new Uninstallation())->register();
