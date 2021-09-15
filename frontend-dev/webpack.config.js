@@ -161,16 +161,8 @@ module.exports = (env, argv) => {
             to: path.resolve(__dirname, '../assets/js/manifest.json'),
           },
           {
-            from: path.resolve(__dirname, 'bitform-logo-icon.ico'),
-            to: path.resolve(__dirname, '../assets/img/bitform-logo-icon.ico'),
-          },
-          {
-            from: path.resolve(__dirname, 'bit-form.png'),
-            to: path.resolve(__dirname, '../assets/img/bit-form.png'),
-          },
-          {
-            from: path.resolve(__dirname, 'logo-bg.svg'),
-            to: path.resolve(__dirname, '../assets/img/logo-bg.svg'),
+            from: path.resolve(__dirname, 'logo.png'),
+            to: path.resolve(__dirname, '../assets/img/logo.png'),
           },
           {
             from: path.resolve(__dirname, 'logo.svg'),

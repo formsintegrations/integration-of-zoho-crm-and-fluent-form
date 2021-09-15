@@ -13,11 +13,12 @@ import Loader from './components/Loaders/Loader'
 import logo from './resource/img/integ/crm.svg'
 import Integrations from "./components/Integrations"
 import TableLoader from './components/Loaders/TableLoader'
+import Settings from './pages/Settings'
 
 const AllForms = lazy(() => import('./pages/AllForms'))
 const Error404 = lazy(() => import('./pages/Error404'))
 
-function App() {  
+function App() {
   const loaderStyle = { height: '90vh' }
 
   return (
@@ -41,6 +42,13 @@ function App() {
                 >
                   {__('My Forms', 'bitffzc')}
                 </NavLink>
+                <NavLink
+                  exact
+                  to="/settings"
+                  activeClassName="app-link-active"
+                >
+                  {__('Settings', 'bitffzc')}
+                </NavLink>
               </nav>
             </div>
           </div>
@@ -49,12 +57,17 @@ function App() {
             <Switch>
               <Route exact path="/">
                 <Suspense fallback={<TableLoader />}>
-                  <AllForms/>
+                  <AllForms />
                 </Suspense>
               </Route>
               <Route path="/form/:formID/integrations">
                 <Suspense fallback={<Loader className="g-c" style={loaderStyle} />}>
-                  <Integrations/>
+                  <Integrations />
+                </Suspense>
+              </Route>
+              <Route path="/settings">
+                <Suspense fallback={<Loader className="g-c" style={loaderStyle} />}>
+                  <Settings />
                 </Suspense>
               </Route>
               <Route path="*">
@@ -63,7 +76,7 @@ function App() {
             </Switch>
           </div>
         </div>
-        </Router>
+      </Router>
     </Suspense>
   )
 }

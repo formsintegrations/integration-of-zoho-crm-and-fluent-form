@@ -5,12 +5,12 @@
   "description": "Sends Fluent Form entries to Zoho CRM",
   "icons": [
     {
-      "src": "../img/logo-bg.svg",
+      "src": "../img/logo.svg",
       "sizes": "256x256",
       "type": "image/svg"
     },
     {
-      "src": "../img/bit-form.png",
+      "src": "../img/logo.png",
       "type": "image/png",
       "sizes": "256x256"
     }
