@@ -15,6 +15,18 @@ final class Handler
         //
     }
 
+    private function get_field_label($field)
+    {
+        if (property_exists($field->settings, 'label') && $field->settings->label) {
+            return $field->settings->label;
+        } else if (property_exists($field->settings, 'admin_field_label') && $field->settings->admin_field_label) {
+            return $field->settings->admin_field_label;
+        } else if (property_exists($field->attributes, 'name') && $field->attributes->name) {
+            return $field->attributes->name;
+        }
+        return '';
+    }
+
     public function get_a_form($data)
     {
         if (empty($data->formId)) {
@@ -35,7 +47,7 @@ final class Handler
                     $fields[] = [
                                     'name' => $name . $singleField->attributes->name,
                                     'type' => isset($singleField->attributes->type) ? $singleField->attributes->type : $singleField->element,
-                                    'label' => $singleField->settings->label,
+                                    'label' => $this->get_field_label($singleField),
                                 ];
                 }
             } else {
@@ -43,7 +55,7 @@ final class Handler
                 $fields[] = [
                     'name' => $attributes->name,
                     'type' => isset($attributes->type) ? $attributes->type : $field->element,
-                    'label' => $field->settings->label,
+                    'label' => $this->get_field_label($field),
                 ];
             }
         }

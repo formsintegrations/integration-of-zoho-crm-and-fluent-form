@@ -1,23 +1,23 @@
 === Integration of Zoho CRM and Fluent Form ===
 Contributors: bitpressadmin
-Tags: zoho fluentform, zoho crm, fluent form integration
+Tags: Zoho CRM, fluent forms, Zoho, API, Leads, CRM, fluent forms integration, CF7, fluent forms integration with zoho crm, zoho crm integration with fluent forms, zoho crm with fluent forms, fluent forms with zoho crm, CF7 integration, Lead Capture, Lead Magnet, Webforms, Zoho CRM Wordpress, fluent support,Lead Builder, Web To Lead, Lead Generation, Zoho API 2.0, Lead, Account, lead capture, webform to lead, zoho crm integration, Bit Apps, BitPress, fluent SMTP, WP Integrations, Bit Form, Zoho Partner, Bit Form Integration, Bit Form Integration with zoho CRM, zoho fluentform, fluent crm, zoho crm, fluent form integration, newsletter, crm, Email Marketing, Funnel, Email Newsletter, contact form, contact forms, wp forms, forms, form builder, contact form builder, fluent form
 Requires at least: 5.0
 Tested up to: 5.8
 Requires PHP: 5.6
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 
 A powerful integration tool to increase your leads/Contacts. 
 
 == Description ==
 
-> 📢 You can avail all our paid plugins free if you tag us as your "Zoho Partner". Read the details here -  [Bit Press products giveaway](https://bitpress.pro/bitpress-products-offer-for-zoho-users/)
+> 📢 You can avail this plugin free if you tag us as your "Zoho Partner". Read the details here -  [Bit Press products giveaway](https://bitpress.pro/bitpress-products-offer-for-zoho-users/)
 
 > A powerful integration tool to increase your leads/Contacts.
 
 As more and more people are using the web for their sales and marketing, it's only natural that businesses are using the latest technologies to create the most powerful marketing tools.
  
-*Integration of Zoho CRM and Fluent Form*, a module that allows you to hook into the Contact Form7 system to create and manage your sales leads, contacts and appointments with Zoho CRM. Whenever users submit any form via Contact form7, the integration will allow admin to send all the form submissions to Zoho CRM.
+*Integration of Zoho CRM and Fluent Form*, a module that allows you to hook into the Fluent Form system to create and manage your sales leads, contacts and appointments with Zoho CRM. Whenever users submit any form via Fluent Form, the integration will allow admin to send all the form submissions to Zoho CRM.
 
 📜 Things you need :
 
@@ -82,6 +82,11 @@ Using  Fluent Form to Zoho CRM plugin, you can manage your customers, sales, and
 
 
 == Changelog ==
+= 1.0.1 =
+*Release Date - 15 September 2021*
+
+*Fix: Form field label empty issue
+*Feature: Ability to delete plugin on plugin delete 
 
 = 1.0.0 =
 * Initial release

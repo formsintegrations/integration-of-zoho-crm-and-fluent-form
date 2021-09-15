@@ -7,6 +7,8 @@ $bitffzc_i18n_strings = array(
 
     'My Forms' => __('My Forms', 'bitffzc'),
 
+    'Settings' => __('Settings', 'bitffzc'),
+
     'Integration Settings' => __('Integration Settings', 'bitffzc'),
 
     'Integration Info' => __('Integration Info', 'bitffzc'),
@@ -280,6 +282,10 @@ $bitffzc_i18n_strings = array(
     'Redirecting Home in' => __('Redirecting Home in', 'bitffzc'),
 
     'Go Home' => __('Go Home', 'bitffzc'),
+
+    'Failed to toggle' => __('Failed to toggle', 'bitffzc'),
+
+    'Erase all data of this plugin in deletion' => __('Erase all data of this plugin in deletion', 'bitffzc'),
 
     'Thank you for installing Zoho CRM for Fluent Form.' => __('Thank you for installing Zoho CRM for Fluent Form.', 'bitffzc'),
 
