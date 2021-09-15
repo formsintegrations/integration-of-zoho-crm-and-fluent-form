@@ -12,7 +12,9 @@ class AdminAjax
     }
     public function register()
     {
-        if(strpos(\sanitize_text_field($_REQUEST['action']), 'bitffzc') === false) return;   
+        if (strpos(\sanitize_text_field($_REQUEST['action']), 'bitffzc') === false) {
+            return;
+        }
         $dirs = new \FilesystemIterator(__DIR__);
         foreach ($dirs as $dirInfo) {
             if ($dirInfo->isDir()) {
@@ -31,8 +33,9 @@ class AdminAjax
         return;
     }
 
-    public function toggle_erase_all($data) {
-        if (empty($data->toggle)) {
+    public function toggle_erase_all($data)
+    {
+        if (!property_exists($data, 'toggle')) {
             wp_send_json_error(__('Toggle status can\'t be empty', 'bitffzc'));
         }
         update_option('bitffzc_erase_all', (bool)  $data->toggle);

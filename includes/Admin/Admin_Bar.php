@@ -12,6 +12,7 @@ class Admin_Bar
 {
     public function register()
     {
+        add_action('in_admin_header', [$this, 'RemoveAdminNotices']);
         add_action('admin_menu', array( $this, 'AdminMenu' ), 9, 0);
         add_action('admin_enqueue_scripts', array( $this, 'AdminAssets' ));
     }
@@ -127,5 +128,15 @@ class Admin_Bar
     public function RootPage()
     {
         require_once BITFFZC_PLUGIN_DIR_PATH . '/views/view-root.php';
+    }
+
+    public function RemoveAdminNotices()
+    {
+        global $plugin_page;
+        if (strpos($plugin_page, 'bitffzc') === false) {
+            return;
+        }
+        remove_all_actions('admin_notices');
+        remove_all_actions('all_admin_notices');
     }
 }
