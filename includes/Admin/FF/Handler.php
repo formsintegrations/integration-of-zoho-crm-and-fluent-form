@@ -17,11 +17,11 @@ final class Handler
 
     private function get_field_label($field)
     {
-        if (property_exists($field->settings, 'label') && $field->settings->label) {
+        if ( is_object($field->settings) && property_exists($field->settings, 'label') && $field->settings->label) {
             return $field->settings->label;
-        } else if (property_exists($field->settings, 'admin_field_label') && $field->settings->admin_field_label) {
+        } else if (is_object($field->settings) && property_exists($field->settings, 'admin_field_label') && $field->settings->admin_field_label) {
             return $field->settings->admin_field_label;
-        } else if (property_exists($field->attributes, 'name') && $field->attributes->name) {
+        } else if (is_object($field->attributes) && property_exists($field->attributes, 'name') && $field->attributes->name) {
             return $field->attributes->name;
         }
         return '';

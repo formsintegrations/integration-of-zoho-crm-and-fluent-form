@@ -2,9 +2,9 @@
 Contributors: bitpressadmin
 Tags: Zoho CRM, fluent forms, Zoho, API, Leads, CRM, fluent forms integration, CF7, fluent forms integration with zoho crm, zoho crm integration with fluent forms, zoho crm with fluent forms, fluent forms with zoho crm, CF7 integration, Lead Capture, Lead Magnet, Webforms, Zoho CRM Wordpress, fluent support,Lead Builder, Web To Lead, Lead Generation, Zoho API 2.0, Lead, Account, lead capture, webform to lead, zoho crm integration, Bit Apps, BitPress, fluent SMTP, WP Integrations, Bit Form, Zoho Partner, Bit Form Integration, Bit Form Integration with zoho CRM, zoho fluentform, fluent crm, zoho crm, fluent form integration, newsletter, crm, Email Marketing, Funnel, Email Newsletter, contact form, contact forms, wp forms, forms, form builder, contact form builder, fluent form
 Requires at least: 5.0
-Tested up to: 5.8.1
+Tested up to: 6.0.0
 Requires PHP: 5.6
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 
 A powerful integration tool to send your fluent form submissions/entries to Zoho CRM automatically. 
@@ -105,6 +105,9 @@ Using the **Integration of Zoho CRM & Fluent Form** plugin, you can manage your 
 
 
 == Changelog ==
+= 1.0.2 =
+*Tested with WordPress 6.0.0
+
 = 1.0.1 =
 *Release Date - 15 September 2021*
 
