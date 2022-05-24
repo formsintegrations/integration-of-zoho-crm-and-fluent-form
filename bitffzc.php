@@ -4,7 +4,7 @@
  * Plugin Name: Integration of Zoho CRM and Fluent Form
  * Plugin URI:  https://www.bitapps.pro/fluent-form-zohocrm
  * Description: Sends Fluent Form entries to Zoho CRM
- * Version:     1.0.1
+ * Version:     1.0.2
  * Author:      Bit Apps
  * Author URI:  bitapps.pro
  * Text Domain: bitffzc
@@ -24,7 +24,7 @@ $bitffzc_db_version = '1.0';
 
 
 // Define most essential constants.
-define('BITFFZC_VERSION', '1.0.1');
+define('BITFFZC_VERSION', '1.0.2');
 define('BITFFZC_PLUGIN_MAIN_FILE', __FILE__);
 
 
