@@ -23,7 +23,7 @@ export default function IntegrationStepOne({ step, confTmp, handleInput, error, 
       <CopyText value={`${window.location.origin}`} setSnackbar={setSnackbar} className="field-key-cpy w-6 ml-0" />
 
       <div className="mt-3"><b>{__('Authorized Redirect URIs:', 'bitffzc')}</b></div>
-      <CopyText value={`${window.location.href}/redirect`} setSnackbar={setSnackbar} className="field-key-cpy w-6 ml-0" />
+      <CopyText value={bitffzc?.redirect} setSnackbar={setSnackbar} className="field-key-cpy w-6 ml-0" />
 
       <small className="d-blk mt-5">
         {__('To get Client ID and SECRET , Please Visit', 'bitffzc')}

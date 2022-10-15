@@ -17,7 +17,7 @@ final class Handler
 
     private function get_field_label($field)
     {
-        if ( is_object($field->settings) && property_exists($field->settings, 'label') && $field->settings->label) {
+        if (is_object($field->settings) && property_exists($field->settings, 'label') && $field->settings->label) {
             return $field->settings->label;
         } else if (is_object($field->settings) && property_exists($field->settings, 'admin_field_label') && $field->settings->admin_field_label) {
             return $field->settings->admin_field_label;
@@ -33,22 +33,23 @@ final class Handler
             wp_send_json_error(__('Form doesn\'t exists', 'bitffzc'));
         }
         $form = wpFluent()->table('fluentform_forms')->where('id', $data->formId)->first();
-        
+
         $fieldDetails = FormFieldsParser::getFields($form);
         if (empty($fieldDetails)) {
             wp_send_json_error(__('Form doesn\'t exists', 'bitffzc'));
         }
 
         $fields = [];
+
         foreach ($fieldDetails as  $field) {
             if (isset($field->fields)) {
                 $name = isset($field->attributes->name) ? $field->attributes->name . "=>" : '';
                 foreach ($field->fields as $singleField) {
                     $fields[] = [
-                                    'name' => $name . $singleField->attributes->name,
-                                    'type' => isset($singleField->attributes->type) ? $singleField->attributes->type : $singleField->element,
-                                    'label' => $this->get_field_label($singleField),
-                                ];
+                        'name' => $name . $singleField->attributes->name,
+                        'type' => isset($singleField->attributes->type) ? $singleField->attributes->type : $singleField->element,
+                        'label' => $this->get_field_label($singleField),
+                    ];
                 }
             } else {
                 $attributes = $field->attributes;

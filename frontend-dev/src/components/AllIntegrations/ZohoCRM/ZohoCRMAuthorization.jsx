@@ -41,7 +41,7 @@ export default function ZohoCRMAuthorization({ formID, crmConf, setCrmConf, step
       <CopyText value={`${window.location.origin}`} setSnackbar={setSnackbar} className="field-key-cpy w-6 ml-0" readOnly={isInfo} />
 
       <div className="mt-3"><b>{__('Authorized Redirect URIs:', 'bitffzc')}</b></div>
-      <CopyText value={redirectLocation || `${window.location.href}/redirect`} setSnackbar={setSnackbar} className="field-key-cpy w-6 ml-0" readOnly={isInfo} />
+      <CopyText value={redirectLocation || bitffzc?.redirect} setSnackbar={setSnackbar} className="field-key-cpy w-6 ml-0" readOnly={isInfo} />
 
       <small className="d-blk mt-5">
         {__('To get Client ID and SECRET , Please Visit', 'bitffzc')}

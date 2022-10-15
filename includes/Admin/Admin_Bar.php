@@ -111,6 +111,7 @@ class Admin_Bar
                 'dateFormat'  => get_option('date_format'),
                 'timeFormat'  => get_option('time_format'),
                 'timeZone'  => DateTimeHelper::wp_timezone_string(),
+                'redirect' => get_rest_url() . 'bitffzc/redirect',
             )
         );
         if (get_locale() !== 'en_US' && file_exists(BITFFZC_PLUGIN_DIR_PATH . '/languages/generatedString.php')) {
