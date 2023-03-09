@@ -2,11 +2,11 @@
 
 /**
  * Plugin Name: Integration of Zoho CRM and Fluent Form
- * Plugin URI:  https://www.bitapps.pro/fluent-form-zohocrm
+ * Plugin URI:  https://formsintegrations.com/fluent-forms-integration-with-zoho-crm
  * Description: Sends Fluent Form entries to Zoho CRM
  * Version:     1.0.3
- * Author:      Bit Apps
- * Author URI:  bitapps.pro
+ * Author:      Forms Integrations
+ * Author URI:  https://formsintegrations.com
  * Text Domain: bitffzc
  * Requires PHP: 5.6
  * Domain Path: /languages

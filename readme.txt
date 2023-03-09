@@ -1,5 +1,5 @@
 === Integration of Zoho CRM and Fluent Form ===
-Contributors: bitpressadmin
+Contributors: formsintegrations
 Tags: Zoho CRM, fluent forms, Zoho, API, Leads, CRM, fluent forms integration, CF7, fluent forms integration with zoho crm, zoho crm integration with fluent forms, zoho crm with fluent forms, fluent forms with zoho crm, CF7 integration, Lead Capture, Lead Magnet, Webforms, Zoho CRM Wordpress, fluent support,Lead Builder, Web To Lead, Lead Generation, Zoho API 2.0, Lead, Account, lead capture, webform to lead, zoho crm integration, Bit Apps, BitPress, fluent SMTP, WP Integrations, Bit Form, Zoho Partner, Bit Form Integration, Bit Form Integration with zoho CRM, zoho fluentform, fluent crm, zoho crm, fluent form integration, newsletter, crm, Email Marketing, Funnel, Email Newsletter, contact form, contact forms, wp forms, forms, form builder, contact form builder, fluent form
 Requires at least: 5.0
 Tested up to: 6.0.2
@@ -7,93 +7,70 @@ Requires PHP: 5.6
 Stable tag: 1.0.3
 License: GPLv2 or later
 
-A powerful integration tool to send your fluent form submissions/entries to Zoho CRM automatically. 
+Looking for an easy way to integrate **Fluent Forms with Zoho CRM**? Look no further than the Integrations of Zoho CRM with Fluent Forms plugin from WordPress! This plugin simplifies the process of connecting your Zoho CRM account and Fluent Forms, making it easy to collect and manage your customer data. Optimize your website's functionality with this powerful plugin today!
 
-== Description ==
+**Check out our step-by-step tutorial on Zoho CRM Integration with Fluent Forms**
 
-= A powerful integration tool to sync your Fluent Form submission/entries with Zoho CRM. =
 
-💥Get the Best deal here.
+**Things you need to use this plug-in :**
+1. Fluent Forms.
+2. Zoho CRM account.
 
-> 📢 **You can avail this plugins free if you tag us as your **Zoho Partner**. Read the details here - [Bit Apps products giveaway](https://www.bitapps.pro/zoho-partner-tag)**
+**Setup process for Fluent Forms integration with Zoho CRM:**
 
-> 📢 **We are open for freelance work/custom development for this plugin. [**Connect**](https://bitapps.pro/contact) with us for further information
+1. Go to this plugin
+2. Select Form created by Fluent Forms from which you want to send data in Zoho CRM
+3. Then go to Zoho CRM authorization page
+4. Click on "[Zoho API Console](https://api-console.zoho.com/)"
+5. Select "Server Side Applications"
+6. Give a client name but I cannot contain keyword "**Zoho**"
+7. Copy "Homepage URL" and "Authorized Redirect URIs" from the plugin
+8. It will generate "Client ID" and "Client Secret", paste it in the plugin
+9. Complete the authorization process
+10. Now select Zoho CRM module and layout where you want to send data
+11. Map Fluent Forms fields with Zoho CRM fields
+12. Here we go, you successfully set up the integration between Fluent Forms and Zoho CRM.
 
-In today's digital era, marketing and sales are carried out online. This means that customer interactions happen in the form of emails, chats, and social media posts. Using our **Zoho CRM Integration with Fluent Form**, you can now capture a richer set of data about your customers' interactions with your business. These active leads allow you to run any marketing campaign that will help you to grow your organization.
+Note: Authorization compatible with Zoho CRM Plus and Zoho One within the scope CRM.
 
-**Integration of Zoho CRM and Fluent Form**,  a module that allows you to hook into the Fluent form system to create and manage your sales leads, contacts, and appointments with Zoho CRM. Whenever any form is submitted via Fluent Form, you can automatically push data to Zoho CRM.
+**Timeline/Log:**
+Here you can see the API response from Zoho CRM after Fluent Forms is submitted. You will get a response whether the submission is successful or failed. It will help you to debug the situation. 
 
-### 📜 Things you need :
+**FEATURES ON FREE VERSION:**
 
-The prerequisites you need to use our plug-in :
+1. User can send any Fluent forms data to leads module of Zoho CRM.
+2. Users can make one integration at a time.
+3. Users can map only two fields of Zoho CRM.
+4. This plugin allow user to send custom value also.
+5. Support file upload from Fluent forms widget to Zoho CRM.
+6. View the detailed log of submitted data from the plugin dashboard.
+7. Advance conditional logic.
 
-✔ Fluent Form.
+ **[FEATURES ON PRO VERSION](https://formsintegrations.com/fluent-forms-integration-with-zoho-crm):**
+ 
+ 1. All the default modules (lead, deal, contact etc.) from Zoho CRM are available in pro plugin.
+ 2. Zoho CRM Custom modules are available.
+ 3. All the default layouts are available.
+ 4. Custom layouts are available.
+ 5. You can map unlimited field of Fluent forms and Zoho CRM.
+ 6. WordPress meta data/smart data fields are available for field mapping with Zoho CRM.
+ 7. Zoho CRM related list is available to send data and you can send data in multiple related list.
+ 8. All the actions are available in pro plugin.
+ 9. You can do multiple/unlimited integrations.
 
-✔ A ZOHO CRM account.
+***Here are the actions available in the pro version:*** 
 
-### ⚙ Integration Setup:
+1. Workflow: Triggers Zoho CRM workflows
+2. Attachment: Send file upload field data to Zoho CRM related list Attachments
+3. Approval list: Send entries to Zoho CRM approval list.
+4. Blueprint: Trigger Zoho CRM blueprint when a form is submitted via Fluent forms.
+5. Capture GCLID: Sends the click id of Google ads/AdWords ads to Zoho CRM.
+6. Upsert Record: When a form is submitted in Fluent Forms it will check if the same data is already in Zoho CRM. If a data with the identical value exists in Zoho CRM, it will be updated with the new values, if not it will create a new record/lead/contact in Zoho CRM.
+7. Assignment Rule: Trigger assignment rules in Zoho CRM when Fluent Forms submitted.
+8. Tag records: Add a tag to the record that is pushed in Zoho CRM.
+9. Record owner: Assign an owner of the record pushed to Zoho.
 
-✔ Install & activate **Integration of Zoho CRM and Fluent Form** plugin.
-
-✔ Install & activate **Fluent Form plugin**.
-
-✔ For Client id & Secret press **Zoho API console**.
-
-✔ From Zoho CRM settings enter Integration Name, Data Center, Homepage URL, and Authorized Redirect URL & you will get id & secret.
-
-✔ Authorize your site.
-
-### ⚡ Features on free version:
-
-▪ User can send any Fluent Form data to only **Leads** module of Zoho CRM
-
-▪ Only one CRM layout **Standard** can be accessible 
-
-▪ Transmit data to all the Zoho CRM fields including **custom field**.
-
-▪ This plugin allow user to send **custom value** also.
-
-▪ View the detailed log of submitted data from the plugin dashboard.
-
-▪ Set multiple integration under one single form.
-
-### ⚡ Features on pro version:
-
-▪ This plugin allows you to transfer any Fluent Form data to any modules of Zoho CRM including **custom module**.
-
-▪ Send data to the **related list**.
-
-▪ User can upload file to the ZOHO CRM file upload field through plugin.
-
-▪ Set some actions which allows user to track their leads/Contacts more preciously.
-
- Actions are - **Workflow, Attachment, Approval list, BluePrint, GCLID, Upsert Record, Assignment Rule, Tag records, Record owner**.
-
-🔗 For full documentation visit [**Bit Apps**](https://www.bitapps.pro/fluent-form-zohocrm)
-
-📹 For video tutorial visit our [**Channel**](https://www.youtube.com/channel/UCnhVaRwYJ3_G78dMLo6wmHA).
-
-### 🎉 Key Benefits of Plugin :
-
-Using the **Integration of Zoho CRM & Fluent Form** plugin, you can manage your customers, sales, and leads. When a customer submits a form on your site, it will automatically be saved as leads or contact to ZOHO CRM. You can see the information in real-time. It gives your business a simple and robust solution to managing your contacts.
-
-### ✨ Overview of other products we are offering :
-
-📝 [**Bit Form:**](https://wordpress.org/plugins/bit-form/) One of our best selling product. Bit Form is an amazing drag & drop form builder that allows you to create custom forms to interact with your visitors. It gives you the freedom to create any form you want, no coding required.
-
-📧 [**Bit SMTP:**](https://wordpress.org/plugins/bit-smtp/) The ultimate goal of Bit SMTP plugin to make your email deliverability more easy as well as secure.
-
-🛒 [**Integration of WooCommerce with Zoho CRM:**](https://wordpress.org/plugins/crm-for-wc-in-zoho/)  An advanced integration with Zoho CRM to sync all the WooCommerce information (Customers, Products, Sales Order) following few steps
-
-🛒 [**Integration of WooCommerce with Zoho Inventory:**](https://wordpress.org/plugins/wc-zoho-inventory/) The WooCommerce integration with Zoho inventory  is a new plugin by which user can import all the information's related to customer & sales order.
-
-♻ [**Integration Of Zoho CRM & Contact Form7:**](https://wordpress.org/plugins/integration-of-zoho-crm-and-contact-form-7/)  An module that allows you to integrate into the Zoho CRM system to create and manage your sales leads, contacts, and appointments with Contact Form7.
-
-♻ [**Integration Of Zoho CRM & Gravity Form:**](https://wordpress.org/plugins/integration-of-zoho-crm-and-gravity-forms/)  A powerful integration tool to automatically sync your gravity form data with Zoho CRM.
-
-♻ [**Integration Of Zoho CRM & WP Form:**](https://wordpress.org/plugins/integration-of-zoho-crm-and-wpforms/)  A powerful integration tool to automatically sync your WP form data with Zoho CRM.
-
-🔔 For more updates about our products we cordially request you to join our [**Fb Community**](https://www.facebook.com/groups/bitcommunityusers).
+Visit plugin's [website](https://formsintegrations.com/fluent-forms-integration-with-zoho-crm)
 
 == Installation ==
 
