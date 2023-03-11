@@ -7,6 +7,10 @@ Requires PHP: 5.6
 Stable tag: 1.0.3
 License: GPLv2 or later
 
+== Description ==
+
+Visit plugin's [website](https://formsintegrations.com/fluent-forms-integration-with-zoho-crm)
+
 Looking for an easy way to integrate **Fluent Forms with Zoho CRM**? Look no further than the Integrations of Zoho CRM with Fluent Forms plugin from WordPress! This plugin simplifies the process of connecting your Zoho CRM account and Fluent Forms, making it easy to collect and manage your customer data. Optimize your website's functionality with this powerful plugin today!
 
 **Check out our step-by-step tutorial on Zoho CRM Integration with Fluent Forms**
@@ -46,17 +50,17 @@ Here you can see the API response from Zoho CRM after Fluent Forms is submitted.
 6. View the detailed log of submitted data from the plugin dashboard.
 7. Advance conditional logic.
 
- **[FEATURES ON PRO VERSION](https://formsintegrations.com/fluent-forms-integration-with-zoho-crm):**
- 
- 1. All the default modules (lead, deal, contact etc.) from Zoho CRM are available in pro plugin.
- 2. Zoho CRM Custom modules are available.
- 3. All the default layouts are available.
- 4. Custom layouts are available.
- 5. You can map unlimited field of Fluent forms and Zoho CRM.
- 6. WordPress meta data/smart data fields are available for field mapping with Zoho CRM.
- 7. Zoho CRM related list is available to send data and you can send data in multiple related list.
- 8. All the actions are available in pro plugin.
- 9. You can do multiple/unlimited integrations.
+**[FEATURES ON PRO VERSION](https://formsintegrations.com/fluent-forms-integration-with-zoho-crm):**
+
+1. All the default modules (lead, deal, contact etc.) from Zoho CRM are available in pro plugin.
+2. Zoho CRM Custom modules are available.
+3. All the default layouts are available.
+4. Custom layouts are available.
+5. You can map unlimited field of Fluent forms and Zoho CRM.
+6. WordPress meta data/smart data fields are available for field mapping with Zoho CRM.
+7. Zoho CRM related list is available to send data and you can send data in multiple related list.
+8. All the actions are available in pro plugin.
+9. You can do multiple/unlimited integrations.
 
 ***Here are the actions available in the pro version:*** 
 
