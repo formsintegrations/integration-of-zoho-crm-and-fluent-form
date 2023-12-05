@@ -1,7 +1,8 @@
-assets/
+assets
 composer.lock
-frontend-dev/locale.pot
-frontend-dev/node_modules/
-frontend-dev/yarn.lock
+pnpm-lock.yaml
 vendor/
-views/view-root.php
+port
+languages
+locale.pot
+node_modules
