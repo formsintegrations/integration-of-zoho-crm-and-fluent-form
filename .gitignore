@@ -1,8 +1,13 @@
-assets
 composer.lock
+frontend/locale.pot
+/node_modules
+yarn.lock
 pnpm-lock.yaml
+frontend/.eslintrc.js
 vendor/
+assets
+languages/
+.vscode/settings.json
+.idea
 port
-languages
 locale.pot
-node_modules

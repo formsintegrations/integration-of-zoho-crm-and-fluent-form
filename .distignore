@@ -8,5 +8,5 @@ package.json
 pnpm-lock.yaml
 port
 pot-to-php.js
-.vscode
 vite.config.js
+.vscode
