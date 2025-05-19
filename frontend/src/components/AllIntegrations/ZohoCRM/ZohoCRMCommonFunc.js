@@ -1,7 +1,18 @@
 import { __, sprintf } from '../../../Utils/i18nwrap'
 import bitsFetch from '../../../Utils/bitsFetch'
 
-export const handleInput = (e, recordTab, crmConf, setCrmConf, formID, setisLoading, setSnackbar, isNew, error, setError) => {
+export const handleInput = (
+  e,
+  recordTab,
+  crmConf,
+  setCrmConf,
+  formID,
+  setisLoading,
+  setSnackbar,
+  isNew,
+  error,
+  setError
+) => {
   let newConf = { ...crmConf }
   if (recordTab === 0) {
     if (isNew) {
@@ -30,7 +41,15 @@ export const handleInput = (e, recordTab, crmConf, setCrmConf, formID, setisLoad
   setCrmConf({ ...newConf })
 }
 
-export const handleTabChange = (recordTab, settab, formID, crmConf, setCrmConf, setisLoading, setSnackbar) => {
+export const handleTabChange = (
+  recordTab,
+  settab,
+  formID,
+  crmConf,
+  setCrmConf,
+  setisLoading,
+  setSnackbar
+) => {
   if (recordTab) {
     !crmConf.default?.relatedlists?.[crmConf.module]
   }
@@ -61,7 +80,11 @@ export const moduleChange = (recordTab, formID, crmConf, setCrmConf, setisLoadin
   } else {
     const layouts = Object.keys(newConf.default.layouts?.[module])
     if (layouts.length === 1) {
-      if (recordTab === 0) { [newConf.layout] = layouts } else { [newConf.relatedlists[recordTab - 1].layout] = layouts }
+      if (recordTab === 0) {
+        ;[newConf.layout] = layouts
+      } else {
+        ;[newConf.relatedlists[recordTab - 1].layout] = layouts
+      }
       newConf = layoutChange(recordTab, formID, newConf, setCrmConf, setisLoading, setSnackbar)
     }
   }
@@ -78,15 +101,28 @@ export const layoutChange = (recordTab, formID, crmConf, setCrmConf, setisLoadin
   if (recordTab === 0) {
     newConf.actions = {}
 
-    newConf.field_map = newConf?.default?.layouts?.[module]?.[layout]?.required ? generateMappedField(recordTab, newConf) : [{ formField: '', zohoFormField: '' }]
+    newConf.field_map = newConf?.default?.layouts?.[module]?.[layout]?.required
+      ? generateMappedField(recordTab, newConf)
+      : [{ formField: '', zohoFormField: '' }]
 
-    newConf.upload_field_map = (newConf?.default?.layouts?.[module]?.[layout]?.requiredFileUploadFields && Object.keys(newConf.default.layouts[module][layout].requiredFileUploadFields).length > 0) ? generateMappedField(recordTab, newConf, true) : [{ formField: '', zohoFormField: '' }]
+    newConf.upload_field_map =
+      newConf?.default?.layouts?.[module]?.[layout]?.requiredFileUploadFields &&
+      Object.keys(newConf.default.layouts[module][layout].requiredFileUploadFields).length > 0
+        ? generateMappedField(recordTab, newConf, true)
+        : [{ formField: '', zohoFormField: '' }]
   } else {
     newConf.relatedlists[recordTab - 1].actions = {}
 
-    newConf.relatedlists[recordTab - 1].field_map = newConf?.default?.layouts?.[module]?.[layout]?.required ? generateMappedField(recordTab, newConf) : [{ formField: '', zohoFormField: '' }]
+    newConf.relatedlists[recordTab - 1].field_map = newConf?.default?.layouts?.[module]?.[layout]
+      ?.required
+      ? generateMappedField(recordTab, newConf)
+      : [{ formField: '', zohoFormField: '' }]
 
-    newConf.relatedlists[recordTab - 1].upload_field_map = (newConf?.default?.layouts?.[module]?.[layout]?.requiredFileUploadFields && Object.keys(newConf.default.layouts[module][layout].requiredFileUploadFields).length > 0) ? generateMappedField(recordTab, newConf, true) : [{ formField: '', zohoFormField: '' }]
+    newConf.relatedlists[recordTab - 1].upload_field_map =
+      newConf?.default?.layouts?.[module]?.[layout]?.requiredFileUploadFields &&
+      Object.keys(newConf.default.layouts[module][layout].requiredFileUploadFields).length > 0
+        ? generateMappedField(recordTab, newConf, true)
+        : [{ formField: '', zohoFormField: '' }]
   }
 
   return newConf
@@ -100,7 +136,7 @@ export const refreshModules = (formID, crmConf, setCrmConf, setisLoading, setSna
     dataCenter: crmConf.dataCenter,
     clientId: crmConf.clientId,
     clientSecret: crmConf.clientSecret,
-    tokenDetails: crmConf.tokenDetails,
+    tokenDetails: crmConf.tokenDetails
   }
   bitsFetch(refreshModulesRequestParams, 'zcrm_refresh_modules')
     .then(result => {
@@ -115,8 +151,17 @@ export const refreshModules = (formID, crmConf, setCrmConf, setisLoading, setSna
         }
         setCrmConf({ ...newConf })
         setSnackbar({ show: true, msg: __('Modules refreshed', 'bitffzc') })
-      } else if ((result && result.data && result.data.data) || (!result.success && typeof result.data === 'string')) {
-        setSnackbar({ show: true, msg: sprintf(__('Modules refresh failed Cause: %s. please try again', 'bitffzc'), result.data.data || result.data) })
+      } else if (
+        (result && result.data && result.data.data) ||
+        (!result.success && typeof result.data === 'string')
+      ) {
+        setSnackbar({
+          show: true,
+          msg: sprintf(
+            __('Modules refresh failed Cause: %s. please try again', 'bitffzc'),
+            result.data.data || result.data
+          )
+        })
       } else {
         setSnackbar({ show: true, msg: __('Modules refresh failed. please try again', 'bitffzc') })
       }
@@ -138,7 +183,7 @@ export const refreshLayouts = (recordTab, formID, crmConf, setCrmConf, setisLoad
     dataCenter: newConf.dataCenter,
     clientId: newConf.clientId,
     clientSecret: newConf.clientSecret,
-    tokenDetails: newConf.tokenDetails,
+    tokenDetails: newConf.tokenDetails
   }
   bitsFetch(refreshLayoutsRequestParams, 'zcrm_refresh_layouts')
     .then(result => {
@@ -149,21 +194,26 @@ export const refreshLayouts = (recordTab, formID, crmConf, setCrmConf, setisLoad
           const layouts = [...Object.keys(result.data.layouts)]
           if (layouts.length === 1) {
             if (recordTab === 0) {
-              [newConf.layout] = layouts
+              ;[newConf.layout] = layouts
               newConf.field_map = generateMappedField(recordTab, newConf)
               if (Object.keys(result.data.layouts[layouts].fileUploadFields).length > 0) {
                 newConf.upload_field_map = generateMappedField(recordTab, newConf, true)
               }
             } else {
-              [newConf.relatedlists[recordTab - 1].layout] = layouts
+              ;[newConf.relatedlists[recordTab - 1].layout] = layouts
               newConf.relatedlists[recordTab - 1].field_map = generateMappedField(recordTab, newConf)
 
               if (Object.keys(result.data.layouts[layouts].fileUploadFields).length > 0) {
-                newConf.relatedlists[recordTab - 1].upload_field_map = generateMappedField(recordTab, newConf, true)
+                newConf.relatedlists[recordTab - 1].upload_field_map = generateMappedField(
+                  recordTab,
+                  newConf,
+                  true
+                )
               }
             }
 
-            if (!newConf.default.tags?.[module]) refreshTags(recordTab, formID, newConf, setCrmConf, setisLoading, setSnackbar)
+            if (!newConf.default.tags?.[module])
+              refreshTags(recordTab, formID, newConf, setCrmConf, setisLoading, setSnackbar)
           }
         }
         if (result.data.tokenDetails) {
@@ -171,8 +221,14 @@ export const refreshLayouts = (recordTab, formID, crmConf, setCrmConf, setisLoad
         }
         setCrmConf({ ...newConf })
         setSnackbar({ show: true, msg: __('Layouts refreshed', 'bitffzc') })
-      } else if ((result?.data?.data) || (!result.success && typeof result.data === 'string')) {
-        setSnackbar({ show: true, msg: sprintf(__('Layouts refresh failed Cause: %s. please try again', 'bitffzc'), result.data.data || result.data) })
+      } else if (result?.data?.data || (!result.success && typeof result.data === 'string')) {
+        setSnackbar({
+          show: true,
+          msg: sprintf(
+            __('Layouts refresh failed Cause: %s. please try again', 'bitffzc'),
+            result.data.data || result.data
+          )
+        })
       } else {
         setSnackbar({ show: true, msg: __('Layouts refresh failed. please try again', 'bitffzc') })
       }
@@ -186,29 +242,75 @@ export const generateMappedField = (recordTab, crmConf, uploadFields) => {
   const layout = recordTab === 0 ? crmConf.layout : crmConf.relatedlists[recordTab - 1].layout
 
   if (uploadFields) {
-    return crmConf.default.layouts[module][layout].requiredFileUploadFields.length > 0 ? crmConf.default.layouts[module][layout].requiredFileUploadFields.map(field => ({ formField: '', zohoFormField: field })) : [{ formField: '', zohoFormField: '' }]
+    return crmConf.default.layouts[module][layout].requiredFileUploadFields.length > 0
+      ? crmConf.default.layouts[module][layout].requiredFileUploadFields.map(field => ({
+          formField: '',
+          zohoFormField: field
+        }))
+      : [{ formField: '', zohoFormField: '' }]
   }
-  return crmConf.default.layouts[module][layout].required.length > 0 ? crmConf.default.layouts[module][layout].required.map(field => ({ formField: '', zohoFormField: field })) : [{ formField: '', zohoFormField: '' }]
+  return crmConf.default.layouts[module][layout].required.length > 0
+    ? crmConf.default.layouts[module][layout].required.map(field => ({
+        formField: '',
+        zohoFormField: field
+      }))
+    : [{ formField: '', zohoFormField: '' }]
 }
 
-export const checkMappedFields = (crmConf) => {
-  const mappedFields = crmConf?.field_map ? crmConf.field_map.filter(mappedField => (!mappedField.formField && mappedField.zohoFormField && crmConf?.default?.layouts?.[crmConf.module]?.[crmConf.layout]?.required.indexOf(mappedField.zohoFormField) !== -1)) : []
-  const mappedUploadFields = crmConf?.upload_field_map ? crmConf.upload_field_map.filter(mappedField => (!mappedField.formField && mappedField.zohoFormField && crmConf.default.layouts[crmConf.module][crmConf.layout].requiredFileUploadFields.indexOf(mappedField.zohoFormField) !== -1)) : []
-  const mappedRelatedFields = crmConf.relatedlists.map(relatedlist => relatedlist.field_map.filter(mappedField => !mappedField.formField && mappedField.zohoFormField))
-  const mappedRelatedUploadFields = crmConf.relatedlists.map(relatedlist => relatedlist.upload_field_map.filter(mappedField => !mappedField.formField && mappedField.zohoFormField))
+export const checkMappedFields = crmConf => {
+  const mappedFields = crmConf?.field_map
+    ? crmConf.field_map.filter(
+        mappedField =>
+          !mappedField.formField &&
+          mappedField.zohoFormField &&
+          crmConf?.default?.layouts?.[crmConf.module]?.[crmConf.layout]?.required.indexOf(
+            mappedField.zohoFormField
+          ) !== -1
+      )
+    : []
+  const mappedUploadFields = crmConf?.upload_field_map
+    ? crmConf.upload_field_map.filter(
+        mappedField =>
+          !mappedField.formField &&
+          mappedField.zohoFormField &&
+          crmConf.default.layouts[crmConf.module][crmConf.layout].requiredFileUploadFields.indexOf(
+            mappedField.zohoFormField
+          ) !== -1
+      )
+    : []
+  const mappedRelatedFields = crmConf.relatedlists.map(relatedlist =>
+    relatedlist.field_map.filter(mappedField => !mappedField.formField && mappedField.zohoFormField)
+  )
+  const mappedRelatedUploadFields = crmConf.relatedlists.map(relatedlist =>
+    relatedlist.upload_field_map.filter(
+      mappedField => !mappedField.formField && mappedField.zohoFormField
+    )
+  )
 
-  if (mappedFields.length > 0 || mappedUploadFields.length > 0 || mappedRelatedFields.some(relatedField => relatedField.length) || mappedRelatedUploadFields.some(relatedField => relatedField.length)) {
+  if (
+    mappedFields.length > 0 ||
+    mappedUploadFields.length > 0 ||
+    mappedRelatedFields.some(relatedField => relatedField.length) ||
+    mappedRelatedUploadFields.some(relatedField => relatedField.length)
+  ) {
     return false
   }
 
   return true
 }
-export const handleAuthorize = (confTmp, setConf, setError, setisAuthorized, setisLoading, setSnackbar) => {
+export const handleAuthorize = (
+  confTmp,
+  setConf,
+  setError,
+  setisAuthorized,
+  setisLoading,
+  setSnackbar
+) => {
   if (!confTmp.dataCenter || !confTmp.clientId || !confTmp.clientSecret) {
     setError({
-      dataCenter: !confTmp.dataCenter ? __('Data center cann\'t be empty', 'bitffzc') : '',
-      clientId: !confTmp.clientId ? __('Client ID cann\'t be empty', 'bitffzc') : '',
-      clientSecret: !confTmp.clientSecret ? __('Secret key cann\'t be empty', 'bitffzc') : '',
+      dataCenter: !confTmp.dataCenter ? __("Data center cann't be empty", 'bitffzc') : '',
+      clientId: !confTmp.clientId ? __("Client ID cann't be empty", 'bitffzc') : '',
+      clientSecret: !confTmp.clientSecret ? __("Secret key cann't be empty", 'bitffzc') : ''
     })
     return
   }
@@ -228,9 +330,17 @@ export const handleAuthorize = (confTmp, setConf, setError, setisAuthorized, set
         grantTokenResponse = JSON.parse(bitformsZoho)
         localStorage.removeItem('__bitforms_zohoCRM')
       }
-      if (!grantTokenResponse.code || grantTokenResponse.error || !grantTokenResponse || !isauthRedirectLocation) {
+      if (
+        !grantTokenResponse.code ||
+        grantTokenResponse.error ||
+        !grantTokenResponse ||
+        !isauthRedirectLocation
+      ) {
         const errorCause = grantTokenResponse.error ? `Cause: ${grantTokenResponse.error}` : ''
-        setSnackbar({ show: true, msg: `${__('Authorization failed', 'bitffzc')} ${errorCause}. ${__('please try again', 'bitffzc')}` })
+        setSnackbar({
+          show: true,
+          msg: `${__('Authorization failed', 'bitffzc')} ${errorCause}. ${__('please try again', 'bitffzc')}`
+        })
         setisLoading(false)
       } else {
         const newConf = { ...confTmp }
@@ -256,8 +366,14 @@ const tokenHelper = (grantToken, confTmp, setConf, setisAuthorized, setisLoading
         setConf(newConf)
         setisAuthorized(true)
         setSnackbar({ show: true, msg: __('Authorized Successfully', 'bitffzc') })
-      } else if ((result && result.data && result.data.data) || (!result.success && typeof result.data === 'string')) {
-        setSnackbar({ show: true, msg: `${__('Authorization failed Cause:', 'bitffzc')}${result.data.data || result.data}. ${__('please try again', 'bitffzc')}` })
+      } else if (
+        (result && result.data && result.data.data) ||
+        (!result.success && typeof result.data === 'string')
+      ) {
+        setSnackbar({
+          show: true,
+          msg: `${__('Authorization failed Cause:', 'bitffzc')}${result.data.data || result.data}. ${__('please try again', 'bitffzc')}`
+        })
       } else {
         setSnackbar({ show: true, msg: __('Authorization failed. please try again', 'bitffzc') })
       }

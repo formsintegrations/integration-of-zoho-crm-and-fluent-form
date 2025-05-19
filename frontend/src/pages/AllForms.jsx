@@ -32,18 +32,52 @@ function AllFroms({ newFormId }) {
           allFormsDispatchHandler({ type: 'update', data: { formID: id, status: !data.status } })
         }
         setSnackbar({ ...{ show: true, msg: res.data } })
-      }).catch(() => {
+      })
+      .catch(() => {
         allFormsDispatchHandler({ type: 'update', data: { formID: id, status: !status } })
         setSnackbar({ ...{ show: true, msg: __('Failed to enable gclid', 'bitffzc') } })
       })
   }
   const [cols, setCols] = useState([
-    { width: 250, minWidth: 80, Header: __('Form Name', 'bitffzc'), accessor: 'formName', Cell: v => <Link to={`/form/${v.row.original.formID}/integrations`} className="btcd-tabl-lnk">{v.row.values.formName}</Link> },
-    { width: 220, minWidth: 200, Header: __('Short Code', 'bitffzc'), accessor: 'shortcode', Cell: val => <CopyText value={`[${val.row.values.shortcode}]`} setSnackbar={setSnackbar} className="cpyTxt" /> },
-    { width: 70, minWidth: 60, Header: __('Gclid', 'bitffzc'), accessor: 'status', Cell: value => <SingleToggle2 className="flx" disabled checked={value.row.original.status} tooltip={{ '--tooltip-txt': '"Available in Pro"', '--tt-left': '85%' }} /> },
- ])
+    {
+      width: 250,
+      minWidth: 80,
+      Header: __('Form Name', 'bitffzc'),
+      accessor: 'formName',
+      Cell: v => (
+        <Link to={`/form/${v.row.original.formID}/integrations`} className="btcd-tabl-lnk">
+          {v.row.values.formName}
+        </Link>
+      )
+    },
+    {
+      width: 220,
+      minWidth: 200,
+      Header: __('Short Code', 'bitffzc'),
+      accessor: 'shortcode',
+      Cell: val => (
+        <CopyText value={`[${val.row.values.shortcode}]`} setSnackbar={setSnackbar} className="cpyTxt" />
+      )
+    },
+    {
+      width: 70,
+      minWidth: 60,
+      Header: __('Gclid', 'bitffzc'),
+      accessor: 'status',
+      Cell: value => (
+        <SingleToggle2
+          className="flx"
+          disabled
+          checked={value.row.original.status}
+          tooltip={{ '--tooltip-txt': '"Available in Pro"', '--tt-left': '85%' }}
+        />
+      )
+    }
+  ])
 
-  const setTableCols = useCallback(newCols => { setCols(newCols) }, [])
+  const setTableCols = useCallback(newCols => {
+    setCols(newCols)
+  }, [])
 
   return (
     <div id="all-forms">
@@ -65,7 +99,9 @@ function AllFroms({ newFormId }) {
             />
           </div>
         </>
-      ) : <Welcome setModal={setModal} />}
+      ) : (
+        <Welcome setModal={setModal} />
+      )}
     </div>
   )
 }

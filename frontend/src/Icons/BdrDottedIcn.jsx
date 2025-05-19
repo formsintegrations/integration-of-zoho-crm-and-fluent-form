@@ -1,9 +1,6 @@
 export default function BdrDottedIcn() {
   return (
-    <svg
-      className="btc-line-icn"
-      viewBox="-10 0 200 45"
-    >
+    <svg className="btc-line-icn" viewBox="-10 0 200 45">
       <path
         className="fill-icn"
         d="M22.2,45.5L22.2,45.5C10,45.5,0,35.5,0,23.2l0-1C0,10,10,0,22.2,0h0c12.3,0,22.2,10,22.2,22.2v1

@@ -9,14 +9,24 @@ export default function CopyText({ value, setSnackbar, className, readOnly }) {
     text.select()
     text.setSelectionRange(0, 99999)
     document.execCommand('copy')
-    setTimeout(() => { cpyBtn.setAttribute('style', '--tooltip-txt: "Copy"') }, 2000)
+    setTimeout(() => {
+      cpyBtn.setAttribute('style', '--tooltip-txt: "Copy"')
+    }, 2000)
   }
 
   return (
     <div className={className}>
       <label htmlFor={value} className="flx">
         <input className={`w-10 ${readOnly && 'readonly'}`} value={value} readOnly />
-        <button onClick={copyText} className="tooltip" style={{ '--tooltip-txt': '"Copy"' }} aria-label="Copy" type="button"><span className="btcd-icn icn-copy" /></button>
+        <button
+          onClick={copyText}
+          className="tooltip"
+          style={{ '--tooltip-txt': '"Copy"' }}
+          aria-label="Copy"
+          type="button"
+        >
+          <span className="btcd-icn icn-copy" />
+        </button>
       </label>
     </div>
   )

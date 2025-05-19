@@ -17,11 +17,12 @@ const sprintf = (text, ...vars) => {
   if (!wp?.i18n) {
     const matches = text.match(/%[s d u c o x X bg G e E f F]/g)
     let str = text
-    vars.map((val, idx) => { str = str.replace(matches[idx], val) })
+    vars.map((val, idx) => {
+      str = str.replace(matches[idx], val)
+    })
     return str
   }
   return i18nsprintf(text, vars)
 }
 
-export { __,
-  sprintf }
+export { __, sprintf }

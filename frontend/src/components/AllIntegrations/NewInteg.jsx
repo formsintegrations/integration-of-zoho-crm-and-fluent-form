@@ -10,7 +10,14 @@ export default function NewInteg({ allIntegURL, formFields, setIntegration, inte
   const NewIntegs = () => {
     switch (integUrlName) {
       case 'Zoho CRM':
-        return <ZohoCRM allIntegURL={allIntegURL} formFields={formFields} integrations={integrations} setIntegration={setIntegration} />
+        return (
+          <ZohoCRM
+            allIntegURL={allIntegURL}
+            formFields={formFields}
+            integrations={integrations}
+            setIntegration={setIntegration}
+          />
+        )
       default:
         break
     }
@@ -25,7 +32,9 @@ export default function NewInteg({ allIntegURL, formFields, setIntegration, inte
           &nbsp;Back
         </Link>
         <div className="w-8 txt-center">
-          <div className="mb-1"><b className="f-lg">{integUrlName}</b></div>
+          <div className="mb-1">
+            <b className="f-lg">{integUrlName}</b>
+          </div>
           <div>{__('Integration Settings', 'bitffzc')}</div>
         </div>
       </div>

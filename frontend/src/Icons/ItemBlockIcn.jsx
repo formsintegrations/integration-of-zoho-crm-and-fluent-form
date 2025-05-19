@@ -1,10 +1,6 @@
 export default function ItemBlockIcn({ w }) {
   return (
-    <svg
-      className="btc-line-icn"
-      viewBox="0 0 178.7 142.4"
-      width={w}
-    >
+    <svg className="btc-line-icn" viewBox="0 0 178.7 142.4" width={w}>
       <path
         className="line-icn"
         d="M160.6,56.8H18.1C12,56.8,7,51.8,7,45.7V18.1C7,12,12,7,18.1,7h142.5c6.1,0,11.1,5,11.1,11.1v27.6

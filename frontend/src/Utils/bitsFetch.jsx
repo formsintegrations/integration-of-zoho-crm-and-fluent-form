@@ -3,7 +3,7 @@
 export default async function bitsFetch(data, action, contentType = null, queryParam = null) {
   const uri = new URL(bitffzc.ajaxURL)
   uri.searchParams.append('action', `bitffzc_${action}`)
-  uri.searchParams.append('_ajax_nonce',  bitffzc.nonce)
+  uri.searchParams.append('_ajax_nonce', bitffzc.nonce)
 
   // append query params in url
   if (queryParam) {
@@ -19,9 +19,8 @@ export default async function bitsFetch(data, action, contentType = null, queryP
     headers: {
       //  'Content-Type': contentType === null ? 'application/x-www-form-urlencoded' : contentType,
     },
-    body: data instanceof FormData ? data : JSON.stringify(data),
-  })
-    .then(res => res.json())
+    body: data instanceof FormData ? data : JSON.stringify(data)
+  }).then(res => res.json())
 
   return response
 }

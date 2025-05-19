@@ -33,14 +33,23 @@ export default function MinMaxLength(props) {
       <div className="flx">
         <div className="setting-inp ml-2">
           <span>Min Length:</span>
-          <input style={{ width: '70%' }} type="number" onChange={updateMinLength} value={props.minLength} />
+          <input
+            style={{ width: '70%' }}
+            type="number"
+            onChange={updateMinLength}
+            value={props.minLength}
+          />
         </div>
         <div className="setting-inp">
           <span>Max Length:</span>
-          <input style={{ width: '70%' }} type="number" onChange={updateMaxLength} value={props.maxLength} />
+          <input
+            style={{ width: '70%' }}
+            type="number"
+            onChange={updateMaxLength}
+            value={props.maxLength}
+          />
         </div>
       </div>
-
     </div>
   )
 }

@@ -19,7 +19,15 @@ export default function IntegInfo({ allIntegURL, integrations }) {
   location = bitffzc?.redirect
 
   const IntegInfoComponents = () => {
-    return <ZohoCRMAuthorization crmConf={integ} step={1} redirectLocation={location} setSnackbar={setSnackbar} isInfo />
+    return (
+      <ZohoCRMAuthorization
+        crmConf={integ}
+        step={1}
+        redirectLocation={location}
+        setSnackbar={setSnackbar}
+        isInfo
+      />
+    )
   }
 
   return (

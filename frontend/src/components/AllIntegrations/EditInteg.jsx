@@ -8,7 +8,14 @@ const EditZohoCRM = lazy(() => import('./ZohoCRM/EditZohoCRM'))
 export default function EditInteg({ allIntegURL, formFields, setIntegration, integrations }) {
   const { id } = useParams()
   const IntegType = () => {
-    return <EditZohoCRM allIntegURL={allIntegURL} formFields={formFields} integrations={integrations} setIntegration={setIntegration} />
+    return (
+      <EditZohoCRM
+        allIntegURL={allIntegURL}
+        formFields={formFields}
+        integrations={integrations}
+        setIntegration={setIntegration}
+      />
+    )
   }
 
   return (

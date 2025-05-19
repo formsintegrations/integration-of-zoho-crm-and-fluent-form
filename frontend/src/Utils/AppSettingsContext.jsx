@@ -6,19 +6,21 @@ export const AppSettings = createContext()
 export default function AppSettingsProvider({ children }) {
   const [reCaptchaV2, setreCaptchaV2] = useState(
     // eslint-disable-next-line no-undef
-    bitffzc?.allFormSettings?.gReCaptcha ? bitffzc.allFormSettings.gReCaptcha
+    bitffzc?.allFormSettings?.gReCaptcha
+      ? bitffzc.allFormSettings.gReCaptcha
       : {
-        siteKey: '',
-        secretKey: '',
-      },
+          siteKey: '',
+          secretKey: ''
+        }
   )
   const [reCaptchaV3, setreCaptchaV3] = useState(
     // eslint-disable-next-line no-undef
-    bitffzc?.allFormSettings?.gReCaptchaV3 ? bitffzc.allFormSettings.gReCaptchaV3
+    bitffzc?.allFormSettings?.gReCaptchaV3
+      ? bitffzc.allFormSettings.gReCaptchaV3
       : {
-        siteKey: '',
-        secretKey: '',
-      },
+          siteKey: '',
+          secretKey: ''
+        }
   )
 
   const paymentsState = () => {
@@ -32,7 +34,9 @@ export default function AppSettingsProvider({ children }) {
 
   const [payments, setPayments] = useState(paymentsState())
   return (
-    <AppSettings.Provider value={{ reCaptchaV2, setreCaptchaV2, reCaptchaV3, setreCaptchaV3, payments, setPayments }}>
+    <AppSettings.Provider
+      value={{ reCaptchaV2, setreCaptchaV2, reCaptchaV3, setreCaptchaV3, payments, setPayments }}
+    >
       {children}
     </AppSettings.Provider>
   )

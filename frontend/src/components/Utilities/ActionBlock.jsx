@@ -60,7 +60,14 @@ function ActionBlock({ formFields, fields, action, lgcGrpInd, actionInd, setwork
         style={{ width: 720 }}
       >
         <option value="">{__('Select One', 'bitffzc')}</option>
-        {formFields.map(itm => itm.type !== 'file' && <option key={`ff-Ab-${itm.key}`} value={itm.key}>{itm.name}</option>)}
+        {formFields.map(
+          itm =>
+            itm.type !== 'file' && (
+              <option key={`ff-Ab-${itm.key}`} value={itm.key}>
+                {itm.name}
+              </option>
+            )
+        )}
       </MtSelect>
 
       <svg height="35" width="100" className="mt-1">
@@ -89,21 +96,30 @@ function ActionBlock({ formFields, fields, action, lgcGrpInd, actionInd, setwork
             <line x1="0" y1="20" x2="40" y2="20" style={{ stroke: '#b9c5ff', strokeWidth: 1 }} />
           </svg>
 
-          {type === 'select' || type === 'check' || type === 'radio'
-            ? (
-              <MultiSelect
-                className="msl-wrp-options btcd-paper-drpdwn w-10"
-                defaultValue={action.val}
-                onChange={changeAtnVal}
-                options={type === 'select' ? fields?.[fieldKey]?.opt : (type === 'check' || type === 'radio') && fields?.[fieldKey]?.opt?.map(opt => ({ label: opt.lbl, value: opt.lbl }))}
-                customValue={fields?.[fieldKey]?.customOpt}
-                // eslint-disable-next-line no-nested-ternary
-                singleSelect={type === 'select' ? !fields?.[fieldKey]?.mul : type === 'check' ? false : type === 'radio' && true}
-              />
-            )
-            : (
-              <MtInput onChange={e => changeAtnVal(e.target.value)} label="Value" value={action.val} />
-            )}
+          {type === 'select' || type === 'check' || type === 'radio' ? (
+            <MultiSelect
+              className="msl-wrp-options btcd-paper-drpdwn w-10"
+              defaultValue={action.val}
+              onChange={changeAtnVal}
+              options={
+                type === 'select'
+                  ? fields?.[fieldKey]?.opt
+                  : (type === 'check' || type === 'radio') &&
+                    fields?.[fieldKey]?.opt?.map(opt => ({ label: opt.lbl, value: opt.lbl }))
+              }
+              customValue={fields?.[fieldKey]?.customOpt}
+              // eslint-disable-next-line no-nested-ternary
+              singleSelect={
+                type === 'select'
+                  ? !fields?.[fieldKey]?.mul
+                  : type === 'check'
+                    ? false
+                    : type === 'radio' && true
+              }
+            />
+          ) : (
+            <MtInput onChange={e => changeAtnVal(e.target.value)} label="Value" value={action.val} />
+          )}
         </>
       )}
 

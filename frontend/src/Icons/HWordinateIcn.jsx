@@ -1,12 +1,6 @@
 export default function HWordinateIcn({ h, w, className, style }) {
   return (
-    <svg
-      width={w}
-      height={h}
-      className={className}
-      style={style}
-      viewBox="0 0 171.2 171.2"
-    >
+    <svg width={w} height={h} className={className} style={style} viewBox="0 0 171.2 171.2">
       <path
         className="fill-icn"
         d="M176.2,88.2c0,2.2-1.3,4.3-3.9,6.3c-3.7,2.9-7.6,5.8-11.3,8.5c-3.5,2.6-7.1,5.3-10.6,8c-5.5,4.2-9.1,1-10.4-0.6

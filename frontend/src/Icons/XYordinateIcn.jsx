@@ -1,9 +1,6 @@
 export default function XYordinateIcn() {
   return (
-    <svg
-      className="btc-line-icn"
-      viewBox="0 0 136.4 140.1"
-    >
+    <svg className="btc-line-icn" viewBox="0 0 136.4 140.1">
       <path
         className="line-icn"
         style={{ strokeMiterlimit: 10 }}

@@ -19,20 +19,28 @@ function EditZohoCRM({ formFields, setIntegration, integrations, allIntegURL }) 
   const [snack, setSnackbar] = useState({ show: false })
   const [tab, settab] = useState(0)
 
-
   const saveConfig = () => {
     if (!checkMappedFields(crmConf)) {
       setSnackbar({ show: true, msg: __('Please map mandatory fields', 'bitffzc') })
       return
     }
-    const resp = saveIntegConfig(formID, integrations, setIntegration, allIntegURL, crmConf, history, id, 1)
+    const resp = saveIntegConfig(
+      formID,
+      integrations,
+      setIntegration,
+      allIntegURL,
+      crmConf,
+      history,
+      id,
+      1
+    )
     resp.then(res => {
       console.clear()
       if (res.success) {
         setSnackbar({ show: true, msg: res?.data })
         setTimeout(() => {
           history.push(allIntegURL)
-        }, 200);
+        }, 200)
       } else {
         setSnackbar({ show: true, msg: res?.data || res })
       }
@@ -45,7 +53,14 @@ function EditZohoCRM({ formFields, setIntegration, integrations, allIntegURL }) 
 
       <div className="flx mt-3">
         <b className="wdt-100 d-in-b">{__('Integration Name:', 'bitffzc')}</b>
-        <input className="btcd-paper-inp w-7" onChange={e => handleInput(e, tab, crmConf, setCrmConf)} name="name" value={crmConf.name} type="text" placeholder={__('Integration Name...', 'bitffzc')} />
+        <input
+          className="btcd-paper-inp w-7"
+          onChange={e => handleInput(e, tab, crmConf, setCrmConf)}
+          name="name"
+          value={crmConf.name}
+          type="text"
+          placeholder={__('Integration Name...', 'bitffzc')}
+        />
       </div>
 
       <ZohoCRMIntegLayout
@@ -53,7 +68,7 @@ function EditZohoCRM({ formFields, setIntegration, integrations, allIntegURL }) 
         settab={settab}
         formID={formID}
         formFields={formFields}
-        handleInput={(e) => handleInput(e, tab, crmConf, setCrmConf, formID, setisLoading, setSnackbar)}
+        handleInput={e => handleInput(e, tab, crmConf, setCrmConf, formID, setisLoading, setSnackbar)}
         crmConf={crmConf}
         setCrmConf={setCrmConf}
         isLoading={isLoading}

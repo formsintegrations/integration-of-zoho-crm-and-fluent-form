@@ -1,9 +1,6 @@
 export default function NoneIcn() {
   return (
-    <svg
-      className="btc-line-icn"
-      viewBox="0 0 170.2 170.2"
-    >
+    <svg className="btc-line-icn" viewBox="0 0 170.2 170.2">
       <path
         className="line-icn"
         style={{ strokeMiterlimit: 10 }}

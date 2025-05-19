@@ -1,9 +1,6 @@
 export default function BdrDoubleIcn() {
   return (
-    <svg
-      className="btc-line-icn"
-      viewBox="0 0 175.7 66.1"
-    >
+    <svg className="btc-line-icn" viewBox="0 0 175.7 66.1">
       <g>
         <polygon className="fill-icn" points="175.6,20 0,19.3 0.2,0 175.7,0.7" />
       </g>

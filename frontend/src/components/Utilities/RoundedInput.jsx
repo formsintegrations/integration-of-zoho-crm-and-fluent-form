@@ -8,7 +8,10 @@ export default function RoundedInput(props) {
 
   const updateisRound = e => {
     if (e.target.value === 'Square') {
-      props.elm.data.child[1].attr.className = props.elm.data.child[1].attr.className.replace(/round/g, '')
+      props.elm.data.child[1].attr.className = props.elm.data.child[1].attr.className.replace(
+        /round/g,
+        ''
+      )
     } else {
       props.elm.data.child[1].attr.className += ' round'
     }

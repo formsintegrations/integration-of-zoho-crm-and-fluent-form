@@ -11,7 +11,7 @@ import { __ } from './Utils/i18nwrap'
 import './resource/icons/style.css'
 import Loader from './components/Loaders/Loader'
 import logo from './resource/img/integ/crm.svg'
-import Integrations from "./components/Integrations"
+import Integrations from './components/Integrations'
 import TableLoader from './components/Loaders/TableLoader'
 import Settings from './pages/Settings'
 
@@ -22,10 +22,9 @@ function App() {
   const loaderStyle = { height: '90vh' }
 
   return (
-    <Suspense fallback={(<Loader className="g-c" style={loaderStyle} />)}>
+    <Suspense fallback={<Loader className="g-c" style={loaderStyle} />}>
       <Router basename={typeof bitffzc !== 'undefined' ? bitffzc.baseURL : '/'}>
         <div className="Btcd-App">
-
           <div className="nav-wrp">
             <div className="flx">
               <div className="logo flx" title={__('Integrations for Fluent Form', 'bitffzc')}>
@@ -35,18 +34,10 @@ function App() {
                 </Link>
               </div>
               <nav className="top-nav ml-2">
-                <NavLink
-                  exact
-                  to="/"
-                  activeClassName="app-link-active"
-                >
+                <NavLink exact to="/" activeClassName="app-link-active">
                   {__('My Forms', 'bitffzc')}
                 </NavLink>
-                <NavLink
-                  exact
-                  to="/settings"
-                  activeClassName="app-link-active"
-                >
+                <NavLink exact to="/settings" activeClassName="app-link-active">
                   {__('Settings', 'bitffzc')}
                 </NavLink>
               </nav>

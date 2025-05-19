@@ -5,12 +5,22 @@ function LogicChip({ logic, nested, onChange }) {
     <>
       <div style={{ height: nested ? 5 : 10 }}>
         <svg height="60" width="50">
-          <line x1="20" y1={nested ? 6 : 10} x2="20" y2="0" style={{ stroke: '#b9c5ff', strokeWidth: 1 }} />
+          <line
+            x1="20"
+            y1={nested ? 6 : 10}
+            x2="20"
+            y2="0"
+            style={{ stroke: '#b9c5ff', strokeWidth: 1 }}
+          />
         </svg>
       </div>
 
       <div>
-        <select value={logic} onChange={onChange} className={`btcd-logic-chip ${nested && 'scl-7 op-8'}`}>
+        <select
+          value={logic}
+          onChange={onChange}
+          className={`btcd-logic-chip ${nested && 'scl-7 op-8'}`}
+        >
           <option value="or">{__('OR', 'bitffzc')}</option>
           <option value="and">{__('AND', 'bitffzc')}</option>
         </select>
@@ -18,7 +28,13 @@ function LogicChip({ logic, nested, onChange }) {
 
       <div style={{ height: nested ? 5 : 10 }}>
         <svg height="60" width="50">
-          <line x1="20" y1={nested ? 6 : 10} x2="20" y2="0" style={{ stroke: '#b9c5ff', strokeWidth: 1 }} />
+          <line
+            x1="20"
+            y1={nested ? 6 : 10}
+            x2="20"
+            y2="0"
+            style={{ stroke: '#b9c5ff', strokeWidth: 1 }}
+          />
         </svg>
       </div>
     </>

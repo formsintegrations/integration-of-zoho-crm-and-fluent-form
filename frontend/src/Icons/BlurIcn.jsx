@@ -1,9 +1,6 @@
 export default function BlurIcn() {
   return (
-    <svg
-      className="btc-line-icn"
-      viewBox="0 0 111.6 180.6"
-    >
+    <svg className="btc-line-icn" viewBox="0 0 111.6 180.6">
       <path
         className="line-icn"
         d="M50.9,0c2.2,3,4.1,5.6,6,8.3C71.3,29,84.6,50.4,95.1,73.4c4,8.7,6.5,17.9,6.6,27.5c0.2,22.7-13.8,41.6-35.7,47.5

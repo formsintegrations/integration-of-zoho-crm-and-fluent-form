@@ -12,7 +12,13 @@ export default function SelectType(props) {
       {props.multipleSelct && (
         <div className="flx flx-between mt-2">
           <span>Max Select:</span>
-          <input onChange={props.setLimit} value={props.limit} style={{ width: '50%' }} className="input" type="number" />
+          <input
+            onChange={props.setLimit}
+            value={props.limit}
+            style={{ width: '50%' }}
+            className="input"
+            type="number"
+          />
         </div>
       )}
     </div>

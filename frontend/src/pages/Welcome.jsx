@@ -7,15 +7,15 @@ export default function Welcome({ setModal }) {
     <div className="btcd-greeting">
       <img src={greeting} alt="" />
       <h2>{__('Welcome to Zoho CRM for Fluent Form', 'bitffzc')}</h2>
-      <div className="sub">
-        {__('Thank you for installing Zoho CRM for Fluent Form.', 'bitffzc')}
-      </div>
+      <div className="sub">{__('Thank you for installing Zoho CRM for Fluent Form.', 'bitffzc')}</div>
       <div>
         {__('Modern Form builder and database management  system', 'bitffzc')}
         <br />
         {__('for Wordpress', 'bitffzc')}
       </div>
-      <button onClick={() => setModal(true)} type="button" className="btn round btcd-btn-lg dp-blue">{__('Create First Form', 'bitffzc')}</button>
+      <button onClick={() => setModal(true)} type="button" className="btn round btcd-btn-lg dp-blue">
+        {__('Create First Form', 'bitffzc')}
+      </button>
     </div>
   )
 }

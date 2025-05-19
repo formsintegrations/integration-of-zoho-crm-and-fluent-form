@@ -8,7 +8,7 @@ function Settings() {
   const [erase, setErase] = useState(bitffzc && bitffzc.erase_all)
   const [snack, setSnackbar] = useState({ show: false })
 
-  const toggleEraseAll = (e) => {
+  const toggleEraseAll = e => {
     const toggle = e.target.checked
     const data = { toggle }
     bitsFetch(data, 'erase_all')
@@ -17,7 +17,8 @@ function Settings() {
           setErase(!erase)
         }
         setSnackbar({ ...{ show: true, msg: res.data } })
-      }).catch(() => {
+      })
+      .catch(() => {
         setSnackbar({ ...{ show: true, msg: __('Failed to toggle', 'bitffzc') } })
       })
   }

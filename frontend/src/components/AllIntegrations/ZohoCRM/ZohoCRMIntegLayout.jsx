@@ -5,7 +5,18 @@ import ZohoCRMRelatedRecord from './ZohoCRMRelatedRecord'
 import { refreshModules } from './ZohoCRMCommonFunc'
 import CloseIcn from '../../../Icons/CloseIcn'
 
-export default function ZohoCRMIntegLayout({ tab, settab, formID, formFields, handleInput, crmConf, setCrmConf, isLoading, setisLoading, setSnackbar }) {
+export default function ZohoCRMIntegLayout({
+  tab,
+  settab,
+  formID,
+  formFields,
+  handleInput,
+  crmConf,
+  setCrmConf,
+  isLoading,
+  setisLoading,
+  setSnackbar
+}) {
   const addNewRelatedTab = () => {
     if (crmConf.relatedlists.length < 3) {
       const newConf = { ...crmConf }
@@ -14,7 +25,7 @@ export default function ZohoCRMIntegLayout({ tab, settab, formID, formFields, ha
         field_map: [{ formField: '', zohoFormField: '' }],
         layout: '',
         module: '',
-        upload_field_map: [{ formField: '', zohoFormField: '' }],
+        upload_field_map: [{ formField: '', zohoFormField: '' }]
       })
       setCrmConf({ ...newConf })
     }
@@ -34,18 +45,35 @@ export default function ZohoCRMIntegLayout({ tab, settab, formID, formFields, ha
     <>
       <br />
       <b className="wdt-100 d-in-b">{__('Module:', 'bitffzc')}</b>
-      <select onChange={handleInput} name="module" value={crmConf.module} className="btcd-paper-inp w-7" disabled={tab}>
+      <select
+        onChange={handleInput}
+        name="module"
+        value={crmConf.module}
+        className="btcd-paper-inp w-7"
+        disabled={tab}
+      >
         <option value="">{__('Select Module', 'bitffzc')}</option>
-        {
-          crmConf?.default?.modules && Object.keys(crmConf.default.modules).map(moduleApiName => (
+        {crmConf?.default?.modules &&
+          Object.keys(crmConf.default.modules).map(moduleApiName => (
             <option key={moduleApiName} value={moduleApiName}>
               {crmConf.default.modules[moduleApiName].plural_label}
             </option>
-          ))
-        }
-        <option value="" disabled>{__('More module on the Pro version', 'bitffzc')}</option>
+          ))}
+        <option value="" disabled>
+          {__('More module on the Pro version', 'bitffzc')}
+        </option>
       </select>
-      {tab === 0 && <button onClick={() => refreshModules(formID, crmConf, setCrmConf, setisLoading, setSnackbar)} className="icn-btn sh-sm ml-2 mr-2 tooltip" style={{ '--tooltip-txt': `'${__('Refresh CRM Modules', 'bitffzc')}'` }} type="button" disabled={isLoading}>&#x21BB;</button>}
+      {tab === 0 && (
+        <button
+          onClick={() => refreshModules(formID, crmConf, setCrmConf, setisLoading, setSnackbar)}
+          className="icn-btn sh-sm ml-2 mr-2 tooltip"
+          style={{ '--tooltip-txt': `'${__('Refresh CRM Modules', 'bitffzc')}'` }}
+          type="button"
+          disabled={isLoading}
+        >
+          &#x21BB;
+        </button>
+      )}
       <br />
       <div>
         <Tabs>
@@ -56,18 +84,38 @@ export default function ZohoCRMIntegLayout({ tab, settab, formID, formFields, ha
               </button>
             </Tab>
 
-            {crmConf?.relatedlists && crmConf.relatedlists.map((_, indx) => (
-              <>
-                <Tab key={`t-${indx * 3}`}>
-                  <button className={`btcd-s-tab-link ${tab === indx + 1 && 's-t-l-active'}`} type="button">
-                    {__('Related List #', 'bitffzc')}
-                    {indx + 1}
+            {crmConf?.relatedlists &&
+              crmConf.relatedlists.map((_, indx) => (
+                <>
+                  <Tab key={`t-${indx * 3}`}>
+                    <button
+                      className={`btcd-s-tab-link ${tab === indx + 1 && 's-t-l-active'}`}
+                      type="button"
+                    >
+                      {__('Related List #', 'bitffzc')}
+                      {indx + 1}
+                    </button>
+                  </Tab>
+                  <button
+                    onClick={() => removeRelatedTab(indx)}
+                    className="icn-btn"
+                    aria-label="delete-relatedlist"
+                    type="button"
+                  >
+                    <CloseIcn size="14" />
                   </button>
-                </Tab>
-                <button onClick={() => removeRelatedTab(indx)} className="icn-btn" aria-label="delete-relatedlist" type="button"><CloseIcn size="14" /></button>
-              </>
-            ))}
-            {crmConf.relatedlists.length < 3 && <button onClick={addNewRelatedTab} className="icn-btn sh-sm ml-2 mr-2 tooltip" style={{ '--tooltip-txt': `'${__('Add More Related List', 'bitffzc')}'` }} type="button">+</button>}
+                </>
+              ))}
+            {crmConf.relatedlists.length < 3 && (
+              <button
+                onClick={addNewRelatedTab}
+                className="icn-btn sh-sm ml-2 mr-2 tooltip"
+                style={{ '--tooltip-txt': `'${__('Add More Related List', 'bitffzc')}'` }}
+                type="button"
+              >
+                +
+              </button>
+            )}
           </div>
           <div className="btcd-hr" />
 
@@ -85,8 +133,8 @@ export default function ZohoCRMIntegLayout({ tab, settab, formID, formFields, ha
               setSnackbar={setSnackbar}
             />
           </Panel>
-          {
-            crmConf?.relatedlists && crmConf.relatedlists.map((_, indx) => (
+          {crmConf?.relatedlists &&
+            crmConf.relatedlists.map((_, indx) => (
               <Panel key={`p-${indx + 2.4}`}>
                 <ZohoCRMRelatedRecord
                   indx={indx}
@@ -102,12 +150,10 @@ export default function ZohoCRMIntegLayout({ tab, settab, formID, formFields, ha
                   setSnackbar={setSnackbar}
                 />
               </Panel>
-            ))
-          }
+            ))}
         </Tabs>
       </div>
       <br />
-
     </>
   )
 }

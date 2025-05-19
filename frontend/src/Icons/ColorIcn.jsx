@@ -1,12 +1,6 @@
 export default function ColorIcn({ h, w, className, style }) {
   return (
-    <svg
-      width={w}
-      height={h}
-      className={className}
-      style={style}
-      viewBox="0 0 189.2 189.2"
-    >
+    <svg width={w} height={h} className={className} style={style} viewBox="0 0 189.2 189.2">
       <path
         className="fill-icn"
         d="M178.1,67.7l-56.6-56.6C114.3,4,104.8,0,94.6,0C84.5,0,74.9,4,67.7,11.1L11.1,67.7C4,74.9,0,84.5,0,94.6s4,19.7,11.1,26.9

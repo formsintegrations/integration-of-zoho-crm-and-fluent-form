@@ -57,7 +57,10 @@ export const multiAssign = (obj, assignArr) => {
   for (let i = 0; i < assignArr.length; i += 1) {
     if (assignArr[i].delProp) {
       delete obj?.[assignArr[i].cls]?.[assignArr[i].property]
-      if (obj[assignArr[i]?.cls]?.constructor === Object && Object.keys(obj?.[assignArr[i]?.cls]).length === 0) {
+      if (
+        obj[assignArr[i]?.cls]?.constructor === Object &&
+        Object.keys(obj?.[assignArr[i]?.cls]).length === 0
+      ) {
         delete obj[assignArr[i].cls]
       }
     } else {
@@ -100,11 +103,12 @@ export const deepCopy = (target, map = new WeakMap()) => {
   return cloneTarget
 }
 
-export const sortArrOfObj = (data, sortLabel) => data.sort((a, b) => {
-  if (a?.[sortLabel]?.toLowerCase() < b?.[sortLabel]?.toLowerCase()) return -1
-  if (a?.[sortLabel]?.toLowerCase() > b?.[sortLabel]?.toLowerCase()) return 1
-  return 0
-})
+export const sortArrOfObj = (data, sortLabel) =>
+  data.sort((a, b) => {
+    if (a?.[sortLabel]?.toLowerCase() < b?.[sortLabel]?.toLowerCase()) return -1
+    if (a?.[sortLabel]?.toLowerCase() > b?.[sortLabel]?.toLowerCase()) return 1
+    return 0
+  })
 
 export const dateTimeFormatter = (dateStr, format) => {
   const newDate = new Date(dateStr)
@@ -172,43 +176,40 @@ export const dateTimeFormatter = (dateStr, format) => {
   return formattedDate
 }
 
-export const loadScript = (src, type) => new Promise((resolve) => {
-  const script = document.createElement('script')
-  script.src = src
-  script.onload = () => {
-    resolve(true)
-  }
-  script.onerror = () => {
-    resolve(false)
-  }
-  script.id = type
-  document.body.appendChild(script)
-})
+export const loadScript = (src, type) =>
+  new Promise(resolve => {
+    const script = document.createElement('script')
+    script.src = src
+    script.onload = () => {
+      resolve(true)
+    }
+    script.onerror = () => {
+      resolve(false)
+    }
+    script.id = type
+    document.body.appendChild(script)
+  })
 
 const cipher = salt => {
   const textToChars = text => text.split('').map(c => c.charCodeAt(0))
-  const byteHex = n => (`0${Number(n).toString(16)}`).substr(-2)
+  const byteHex = n => `0${Number(n).toString(16)}`.substr(-2)
   // eslint-disable-next-line no-bitwise
   const applySaltToChar = code => textToChars(salt).reduce((a, b) => a ^ b, code)
 
-  return text => text
-    .split('')
-    .map(textToChars)
-    .map(applySaltToChar)
-    .map(byteHex)
-    .join('')
+  return text => text.split('').map(textToChars).map(applySaltToChar).map(byteHex).join('')
 }
 
 const decipher = salt => {
   const textToChars = text => text.split('').map(c => c.charCodeAt(0))
   // eslint-disable-next-line no-bitwise
-  const applySaltToChar = code => textToChars(salt).reduce((a, b) => (a ^ b), code)
-  return encoded => encoded
-    .match(/.{1,2}/g)
-    .map(hex => parseInt(hex, 16))
-    .map(applySaltToChar)
-    .map(charCode => String.fromCharCode(charCode))
-    .join('')
+  const applySaltToChar = code => textToChars(salt).reduce((a, b) => a ^ b, code)
+  return encoded =>
+    encoded
+      .match(/.{1,2}/g)
+      .map(hex => parseInt(hex, 16))
+      .map(applySaltToChar)
+      .map(charCode => String.fromCharCode(charCode))
+      .join('')
 }
 
 export const bitCipher = cipher('btcd')

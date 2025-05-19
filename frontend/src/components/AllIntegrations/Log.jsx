@@ -2,8 +2,8 @@ import { lazy, useEffect, useState, useCallback, useRef, memo } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { __ } from '../../Utils/i18nwrap'
 import SnackMsg from '../Utilities/SnackMsg'
-import Table from "../Utilities/Table"
-import bitsFetch from "../../Utils/bitsFetch"
+import Table from '../Utilities/Table'
+import bitsFetch from '../../Utils/bitsFetch'
 const ZohoCRMAuthorization = lazy(() => import('./ZohoCRM/ZohoCRMAuthorization'))
 const Loader = lazy(() => import('../Loaders/Loader'))
 import CopyText from '../Utilities/CopyText'
@@ -18,12 +18,22 @@ function Log({ allIntegURL, integrations }) {
   const [isloading, setisloading] = useState(false)
   const [log, setLog] = useState([])
   const [cols, setCols] = useState([
-    { width: 250, minWidth: 80, Header: __('Status', 'bitffzc'), accessor: 'response_type'},
-    { width: 250, minWidth: 80, Header: __('Record Type', 'bitffzc'), accessor: 'api_type'},
-    { width: 220, minWidth: 200, Header: __('Response', 'bitffzc'), accessor: 'response_obj', Cell: val => <CopyText value={val.row.values.response_obj} setSnackbar={setSnackbar} className="cpyTxt" /> },
-    { width: 220, minWidth: 200, Header: __('Date', 'bitffzc'), accessor: 'created_at' },
- ])
- const setTableCols = useCallback(newCols => { setCols(newCols) }, [])
+    { width: 250, minWidth: 80, Header: __('Status', 'bitffzc'), accessor: 'response_type' },
+    { width: 250, minWidth: 80, Header: __('Record Type', 'bitffzc'), accessor: 'api_type' },
+    {
+      width: 220,
+      minWidth: 200,
+      Header: __('Response', 'bitffzc'),
+      accessor: 'response_obj',
+      Cell: val => (
+        <CopyText value={val.row.values.response_obj} setSnackbar={setSnackbar} className="cpyTxt" />
+      )
+    },
+    { width: 220, minWidth: 200, Header: __('Date', 'bitffzc'), accessor: 'created_at' }
+  ])
+  const setTableCols = useCallback(newCols => {
+    setCols(newCols)
+  }, [])
   // route is info/:id but for redirect uri need to make new/:type
   let location = window.location.toString()
 
@@ -34,8 +44,6 @@ function Log({ allIntegURL, integrations }) {
     confMdl.show = false
     setconfMdl({ ...confMdl })
   }, [confMdl])
-
-
 
   const setBulkDelete = useCallback((rows, action) => {
     const rowID = []
@@ -50,7 +58,7 @@ function Log({ allIntegURL, integrations }) {
       entries.push(rows.original.id)
     }
     const ajaxData = { id: entries }
-    bitsFetch(ajaxData, 'log/delete').then((res) => {
+    bitsFetch(ajaxData, 'log/delete').then(res => {
       if (res.success) {
         if (action && action.fetchData && action.data) {
           action.fetchData(action.data)
@@ -80,9 +88,8 @@ function Log({ allIntegURL, integrations }) {
       confMdl.show = true
       setconfMdl({ ...confMdl })
     },
-    [closeConfMdl, confMdl, setBulkDelete],
+    [closeConfMdl, confMdl, setBulkDelete]
   )
-
 
   const fetchData = useCallback(
     ({ pageSize, pageIndex }) => {
@@ -105,8 +112,8 @@ function Log({ allIntegURL, integrations }) {
             offset: startRow,
             pageSize
           },
-          'log/get',
-        ).then((res) => {
+          'log/get'
+        ).then(res => {
           if (res?.success) {
             setPageCount(Math.ceil(res.data.count / pageSize))
             setCountEntries(res.data.count)
@@ -116,7 +123,8 @@ function Log({ allIntegURL, integrations }) {
         })
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [delConfMdl, id],
+    },
+    [delConfMdl, id]
   )
   return (
     <>

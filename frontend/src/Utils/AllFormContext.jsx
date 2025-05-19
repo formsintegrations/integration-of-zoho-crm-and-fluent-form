@@ -55,20 +55,23 @@ const reportsReducer = (reports, action) => {
 
 const AllFormContext = createContext()
 
-const AllFormContextProvider = (props) => {
+const AllFormContextProvider = props => {
   let allFormsInitialState = []
   //  eslint-disable-next-line no-undef
-  if ( typeof bitffzc !== 'undefined'
-    && bitffzc.allForms !== null) {
-    allFormsInitialState = bitffzc?.allForms?.map(form => (
-      { formID: form.id, status: form.gclid, formName: form.title, shortcode: `fluentform id='${form.id}'`}))
+  if (typeof bitffzc !== 'undefined' && bitffzc.allForms !== null) {
+    allFormsInitialState = bitffzc?.allForms?.map(form => ({
+      formID: form.id,
+      status: form.gclid,
+      formName: form.title,
+      shortcode: `fluentform id='${form.id}'`
+    }))
   }
   const [allForms, allFormsDispatchHandler] = useReducer(AllFormsDispatchHandler, allFormsInitialState)
 
   return (
     <AllFormContext.Provider
       value={{
-        allFormsData: { allForms, allFormsDispatchHandler },
+        allFormsData: { allForms, allFormsDispatchHandler }
       }}
     >
       {props.children}

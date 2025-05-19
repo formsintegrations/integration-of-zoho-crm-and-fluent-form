@@ -1,9 +1,6 @@
 export default function Loader({ style, className }) {
   return (
-    <div
-      className={className}
-      style={style}
-    >
+    <div className={className} style={style}>
       <div>
         <svg
           version="1.1"
@@ -13,7 +10,6 @@ export default function Loader({ style, className }) {
           viewBox="0 0 80 80"
           xmlSpace="preserve"
         >
-
           <path
             fill="#0a8dff"
             d="M10,40c0,0,0-0.4,0-1.1c0-0.3,0-0.8,0-1.3c0-0.3,0-0.5,0-0.8c0-0.3,0.1-0.6,0.1-0.9c0.1-0.6,0.1-1.4,0.2-2.1
@@ -30,7 +26,6 @@ export default function Loader({ style, className }) {
         c-0.7,0.9-1.3,1.9-1.9,2.8c-0.5,1-1,1.9-1.4,2.8c-0.4,0.9-0.8,1.8-1,2.6c-0.3,0.9-0.5,1.6-0.7,2.4c-0.2,0.7-0.3,1.4-0.4,2.1
         c-0.1,0.3-0.1,0.6-0.2,0.9c0,0.3-0.1,0.6-0.1,0.8c0,0.5-0.1,0.9-0.1,1.3C10,39.6,10,40,10,40z"
           >
-
             <animateTransform
               attributeType="xml"
               attributeName="transform"

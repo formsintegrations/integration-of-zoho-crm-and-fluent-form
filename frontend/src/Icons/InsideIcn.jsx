@@ -1,9 +1,6 @@
 export default function SpreadIcn() {
   return (
-    <svg
-      className="btc-line-icn"
-      viewBox="0 0 172.3 163.8"
-    >
+    <svg className="btc-line-icn" viewBox="0 0 172.3 163.8">
       <g>
         <line className="line-icn" x1="55.3" y1="108.5" x2="5.7" y2="158.1" />
         <polyline className="line-icn" points="62.8,132 63.2,100.6 32.6,100.2 " />

@@ -4,12 +4,16 @@ export default function EyeToggle(props) {
 
   return (
     <label htmlFor={`btcd-eye-t-${id}`} className="btcd-eye-t">
-      <input id={`btcd-eye-t-${id}`} {...props.props} type="checkbox" className="btcd-cbx-invisible btcd-eye-t-i" />
+      <input
+        id={`btcd-eye-t-${id}`}
+        {...props.props}
+        type="checkbox"
+        className="btcd-cbx-invisible btcd-eye-t-i"
+      />
       <span>
         <span className="btcd-icn icn-remove_red_eye eye-t-v" />
         <span className="btcd-icn icn-visibility_off eye-t-h" />
-      </span>
-      {' '}
+      </span>{' '}
       {props.title}
     </label>
   )

@@ -29,8 +29,11 @@ export default function TinyMCE({ formFields, id, value, onChangeHandler, toolba
         resize: 'verticle',
         convert_urls: false,
         theme: 'modern',
-        plugins: 'directionality fullscreen image link media charmap hr lists textcolor colorpicker wordpress',
-        toolbar: toolbarMnu || 'formatselect | fontsizeselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat toogleCode wp_code| addFormField',
+        plugins:
+          'directionality fullscreen image link media charmap hr lists textcolor colorpicker wordpress',
+        toolbar:
+          toolbarMnu ||
+          'formatselect | fontsizeselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat toogleCode wp_code| addFormField',
         image_advtab: true,
         default_link_target: '_blank',
         setup(editor) {
@@ -38,13 +41,22 @@ export default function TinyMCE({ formFields, id, value, onChangeHandler, toolba
             onChangeHandler(editor.getContent())
           })
 
-          formFields && editor.addButton('addFormField', {
-            text: 'Form Fields ',
-            tooltip: 'Add Form Field Value in Message',
-            type: 'menubutton',
-            icon: false,
-            menu: formFields?.map(i => !i.type.match(/^(file-up|recaptcha)$/) && ({ text: i.name, onClick() { editor.insertContent(`\${${i.key}}`) } })),
-          })
+          formFields &&
+            editor.addButton('addFormField', {
+              text: 'Form Fields ',
+              tooltip: 'Add Form Field Value in Message',
+              type: 'menubutton',
+              icon: false,
+              menu: formFields?.map(
+                i =>
+                  !i.type.match(/^(file-up|recaptcha)$/) && {
+                    text: i.name,
+                    onClick() {
+                      editor.insertContent(`\${${i.key}}`)
+                    }
+                  }
+              )
+            })
 
           editor.addButton('toogleCode', {
             text: '</>',
@@ -62,9 +74,9 @@ export default function TinyMCE({ formFields, id, value, onChangeHandler, toolba
               } else {
                 editor.setContent(document.getElementById(`${id}-settings`).value)
               }
-            },
+            }
           })
-        },
+        }
       })
     }
   }
@@ -75,7 +87,7 @@ export default function TinyMCE({ formFields, id, value, onChangeHandler, toolba
       className="btcd-paper-inp mt-1"
       rows="5"
       value={value}
-      onChange={(ev) => onChangeHandler(ev.target.value)}
+      onChange={ev => onChangeHandler(ev.target.value)}
       style={{ width: '95.5%', height: 'auto' }}
     />
   )
