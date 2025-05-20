@@ -18,7 +18,7 @@ export default function ZohoCRMIntegLayout({
   setSnackbar
 }) {
   const addNewRelatedTab = () => {
-    if (crmConf.relatedlists.length < 3) {
+    if (crmConf.relatedlists?.length < 3) {
       const newConf = { ...crmConf }
       newConf.relatedlists.push({
         actions: {},
@@ -34,12 +34,13 @@ export default function ZohoCRMIntegLayout({
   const removeRelatedTab = indx => {
     const newConf = { ...crmConf }
 
-    newConf.relatedlists.splice(indx, 1)
+    newConf.relatedlists?.splice(indx, 1)
 
-    if (!newConf.relatedlists.length) settab(0)
+    if (!newConf.relatedlists?.length) settab(0)
 
     setCrmConf({ ...newConf })
   }
+
 
   return (
     <>
@@ -106,7 +107,7 @@ export default function ZohoCRMIntegLayout({
                   </button>
                 </>
               ))}
-            {crmConf.relatedlists.length < 3 && (
+            {crmConf.relatedlists?.length < 3 && (
               <button
                 onClick={addNewRelatedTab}
                 className="icn-btn sh-sm ml-2 mr-2 tooltip"

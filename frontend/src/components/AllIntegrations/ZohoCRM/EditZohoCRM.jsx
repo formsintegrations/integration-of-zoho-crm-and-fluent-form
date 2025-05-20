@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 
 import { useState } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { __ } from '../../../Utils/i18nwrap'
 import SnackMsg from '../../Utilities/SnackMsg'
 import { saveIntegConfig } from '../IntegrationHelpers/IntegrationHelpers'
@@ -10,11 +10,10 @@ import { checkMappedFields, handleInput } from './ZohoCRMCommonFunc'
 import ZohoCRMIntegLayout from './ZohoCRMIntegLayout'
 
 function EditZohoCRM({ formFields, setIntegration, integrations, allIntegURL }) {
-  const history = useHistory()
+  const navigate = useNavigate()
   const { id, formID } = useParams()
 
   const [crmConf, setCrmConf] = useState({ ...integrations[id] })
-  // const [crmConf, setCrmConf] = useState({ ...(typeof integrations[id].integration_details === 'string' ? JSON.parse(integrations[id].integration_details) : integrations[id].integration_details) })
   const [isLoading, setisLoading] = useState(false)
   const [snack, setSnackbar] = useState({ show: false })
   const [tab, settab] = useState(0)
@@ -30,7 +29,7 @@ function EditZohoCRM({ formFields, setIntegration, integrations, allIntegURL }) 
       setIntegration,
       allIntegURL,
       crmConf,
-      history,
+      navigate,
       id,
       1
     )
@@ -39,7 +38,7 @@ function EditZohoCRM({ formFields, setIntegration, integrations, allIntegURL }) 
       if (res.success) {
         setSnackbar({ show: true, msg: res?.data })
         setTimeout(() => {
-          history.push(allIntegURL)
+          navigate(allIntegURL)
         }, 200)
       } else {
         setSnackbar({ show: true, msg: res?.data || res })
@@ -79,7 +78,7 @@ function EditZohoCRM({ formFields, setIntegration, integrations, allIntegURL }) 
       <IntegrationStepThree
         edit
         saveConfig={saveConfig}
-        disabled={crmConf.module === '' || crmConf.layout === '' || crmConf.field_map.length < 1}
+        disabled={crmConf?.module === '' || crmConf?.layout === '' || crmConf?.field_map?.length < 1}
       />
       <br />
     </div>

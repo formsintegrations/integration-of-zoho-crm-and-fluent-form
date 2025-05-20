@@ -1,11 +1,16 @@
 import { lazy, Suspense } from 'react'
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom/client'
 import { AllFormContextProvider } from './Utils/AllFormContext'
 import Loader from './components/Loaders/Loader'
+import 'regenerator-runtime/runtime'
 
 const App = lazy(() => import('./App'))
 
-ReactDOM.render(
+const container = document.getElementById('btcd-app')
+
+const root = ReactDOM.createRoot(container)
+
+root.render(
   <AllFormContextProvider>
     <Suspense
       fallback={
@@ -14,13 +19,12 @@ ReactDOM.render(
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            height: '90vh'
+            height: '82vh'
           }}
         />
       }
     >
       <App />
     </Suspense>
-  </AllFormContextProvider>,
-  document.getElementById('btcd-app')
+  </AllFormContextProvider>
 )
