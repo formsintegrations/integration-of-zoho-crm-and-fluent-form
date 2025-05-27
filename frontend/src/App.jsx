@@ -33,7 +33,7 @@ const App = () => {
               </Link>
             </div>
             <nav className="top-nav ml-2">
-              <NavLink to="/" className={({ isActive }) => (isActive ? 'app-link-active' : '')}>
+              <NavLink to="/" className={({ isActive }) => (isActive ? 'app-link-active' : '')} end>
                 {__('My Forms', 'bitffzc')}
               </NavLink>
               <NavLink to="/settings" className={({ isActive }) => (isActive ? 'app-link-active' : '')}>
@@ -43,6 +43,7 @@ const App = () => {
           </div>
         </div>
 
+        {/* Route Handling */}
         <div className="route-wrp">
           <Routes>
             <Route
