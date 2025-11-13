@@ -1,0 +1,25 @@
+#!/usr/bin/env /usr/bin/bash
+
+PLUGIN_DIR="$PWD"
+
+
+rm -rf "$PLUGIN_DIR/build";
+mkdir -p "$PLUGIN_DIR/build/integration-of-zoho-crm-and-fluent-form";
+BUILD_DIR="$PLUGIN_DIR/build/integration-of-zoho-crm-and-fluent-form";
+
+if [ ! -d "$PLUGIN_DIR/languages" ]; then
+    mkdir "$PLUGIN_DIR/languages";
+fi
+
+cd "$PLUGIN_DIR"
+
+pnpm production
+
+cp -r "$PLUGIN_DIR/vendor"  "$BUILD_DIR/vendor"
+cp -r "$PLUGIN_DIR/includes"  "$BUILD_DIR/includes"
+cp -r "$PLUGIN_DIR/assets"  "$BUILD_DIR/assets"
+cp -r "$PLUGIN_DIR/bitffzc.php"  "$BUILD_DIR/bitffzc.php"
+cp -r "$PLUGIN_DIR/readme.txt"  "$BUILD_DIR/readme.txt"
+cp -r "$PLUGIN_DIR/views"  "$BUILD_DIR/views"
+
+
