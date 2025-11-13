@@ -21,7 +21,10 @@ export default function ZohoCRMAuthorization({
   const nextPage = () => {
     setstep(2)
     !crmConf.module && refreshModules(formID, crmConf, setCrmConf, setisLoading, setSnackbar)
-    document.querySelector('.btcd-s-wrp').scrollTop = 0
+    const scrollContainer = document.querySelector('.btcd-s-wrp')
+    if (scrollContainer) {
+      scrollContainer.scrollTop = 0
+    }
   }
   const handleInput = e => {
     const newConf = { ...crmConf }
