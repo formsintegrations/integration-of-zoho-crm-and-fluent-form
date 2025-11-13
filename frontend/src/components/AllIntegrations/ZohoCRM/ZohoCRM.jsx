@@ -1,7 +1,7 @@
 import { __ } from '../../../Utils/i18nwrap'
 import { useEffect, useState } from 'react'
 import 'react-multiple-select-dropdown-lite/dist/index.css'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import SnackMsg from '../../Utilities/SnackMsg'
 import Steps from '../../Utilities/Steps'
 import { setGrantTokenResponse, saveIntegConfig } from '../IntegrationHelpers/IntegrationHelpers'
@@ -11,7 +11,7 @@ import { checkMappedFields, handleInput, refreshModules } from './ZohoCRMCommonF
 import ZohoCRMIntegLayout from './ZohoCRMIntegLayout'
 
 function ZohoCRM({ formFields, setIntegration, integrations, allIntegURL }) {
-  const navigate = useNavigate()
+  const history = useHistory()
   const { formID } = useParams()
   const [isLoading, setisLoading] = useState(false)
   const [step, setstep] = useState(1)
@@ -21,9 +21,9 @@ function ZohoCRM({ formFields, setIntegration, integrations, allIntegURL }) {
   const [crmConf, setCrmConf] = useState({
     name: 'Zoho CRM API',
     type: 'Zoho CRM',
-    clientId: process.env.NODE_ENV === 'development' ? '1000.4O9UALQT72EAKFVRPQ4JIV75IG1QTI' : '',
+    clientId: process.env.NODE_ENV === 'development' ? '1000.BWH0YC45BQ9PQMTZGKW5J3VUKUO18N' : '',
     clientSecret:
-      process.env.NODE_ENV === 'development' ? 'c78600a170297155f0d3740486d9e2c16491cf1490' : '',
+      process.env.NODE_ENV === 'development' ? 'a01e54cfa1bb3de6283fbbb4d0d5ccee7404b29847' : '',
     module: '',
     layout: '',
     field_map: [{ formField: '', zohoFormField: '' }],
@@ -36,11 +36,11 @@ function ZohoCRM({ formFields, setIntegration, integrations, allIntegURL }) {
   }, [])
 
   const saveConfig = () => {
-    const resp = saveIntegConfig(formID, integrations, setIntegration, allIntegURL, crmConf, navigate)
+    const resp = saveIntegConfig(formID, integrations, setIntegration, allIntegURL, crmConf, history)
     resp.then(res => {
       if (res.success) {
         setSnackbar({ show: true, msg: res.data?.msg })
-        navigate(allIntegURL)
+        history.push(allIntegURL)
       } else {
         setSnackbar({ show: true, msg: res.data || res })
       }
