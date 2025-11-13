@@ -35,6 +35,13 @@ function ZohoCRM({ formFields, setIntegration, integrations, allIntegURL }) {
     window.opener && setGrantTokenResponse('zohoCRM')
   }, [])
 
+  useEffect(() => {
+    const scrollContainer = document.querySelector('.btcd-s-wrp')
+    if (scrollContainer) {
+      scrollContainer.scrollTop = 0
+    }
+  })
+
   const saveConfig = () => {
     const resp = saveIntegConfig(formID, integrations, setIntegration, allIntegURL, crmConf, navigate)
     resp.then(res => {
@@ -54,7 +61,6 @@ function ZohoCRM({ formFields, setIntegration, integrations, allIntegURL }) {
 
     crmConf.module && crmConf.layout && crmConf.field_map.length > 0 && setstep(pageNo)
   }
-  document.querySelector('.btcd-s-wrp').scrollTop = 0
 
   return (
     <div>
