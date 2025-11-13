@@ -10,7 +10,7 @@ export default function TableCheckBox(props) {
           checked={props.checked}
           value={props.value}
           name={props.name}
-          onChange={props.onChange || (() => {})}
+          onChange={props.onChange}
           className="btcd-cbx-invisible"
           {...props.rest}
           ref={props.refer}

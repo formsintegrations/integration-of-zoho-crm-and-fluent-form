@@ -4,8 +4,9 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 
 import { lazy, Suspense } from 'react'
-import { HashRouter as Router, Routes, Route, NavLink, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, NavLink, Link } from 'react-router-dom'
 import './resource/sass/app.scss'
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { __ } from './Utils/i18nwrap'
 import './resource/icons/style.css'
 import Loader from './components/Loaders/Loader'
@@ -17,71 +18,57 @@ import Settings from './pages/Settings'
 const AllForms = lazy(() => import('./pages/AllForms'))
 const Error404 = lazy(() => import('./pages/Error404'))
 
-const App = () => {
+function App() {
   const loaderStyle = { height: '90vh' }
 
   return (
-    <Router>
-      <div className="Btcd-App">
-        {/* Top Navigation */}
-        <div className="nav-wrp">
-          <div className="flx">
-            <div className="logo flx" title={__('Integrations for Fluent Form', 'bitffzc')}>
-              <Link to="/" className="flx">
-                <img src={logo} alt="logo" className="ml-2" />
-                <span className="ml-2">Integrations for Fluent Form</span>
-              </Link>
+    <Suspense fallback={<Loader className="g-c" style={loaderStyle} />}>
+      <Router basename={typeof bitffzc !== 'undefined' ? bitffzc.baseURL : '/'}>
+        <div className="Btcd-App">
+          <div className="nav-wrp">
+            <div className="flx">
+              <div className="logo flx" title={__('Integrations for Fluent Form', 'bitffzc')}>
+                <Link to="/" className="flx">
+                  <img src={logo} alt="logo" className="ml-2" />
+                  <span className="ml-2">Integrations for Fluent Form</span>
+                </Link>
+              </div>
+              <nav className="top-nav ml-2">
+                <NavLink exact to="/" activeClassName="app-link-active">
+                  {__('My Forms', 'bitffzc')}
+                </NavLink>
+                <NavLink exact to="/settings" activeClassName="app-link-active">
+                  {__('Settings', 'bitffzc')}
+                </NavLink>
+              </nav>
             </div>
-            <nav className="top-nav ml-2">
-              <NavLink to="/" className={({ isActive }) => (isActive ? 'app-link-active' : '')} end>
-                {__('My Forms', 'bitffzc')}
-              </NavLink>
-              <NavLink to="/settings" className={({ isActive }) => (isActive ? 'app-link-active' : '')}>
-                {__('Settings', 'bitffzc')}
-              </NavLink>
-            </nav>
           </div>
-        </div>
 
-        {/* Route Handling */}
-        <div className="route-wrp">
-          <Routes>
-            <Route
-              path="/"
-              element={
+          <div className="route-wrp">
+            <Switch>
+              <Route exact path="/">
                 <Suspense fallback={<TableLoader />}>
                   <AllForms />
                 </Suspense>
-              }
-            />
-            <Route
-              path="/form/:formID/integrations/*"
-              element={
-                <Suspense fallback={<TableLoader />}>
+              </Route>
+              <Route path="/form/:formID/integrations">
+                <Suspense fallback={<Loader className="g-c" style={loaderStyle} />}>
                   <Integrations />
                 </Suspense>
-              }
-            />
-            <Route
-              path="/settings"
-              element={
-                <Suspense fallback={<TableLoader />}>
+              </Route>
+              <Route path="/settings">
+                <Suspense fallback={<Loader className="g-c" style={loaderStyle} />}>
                   <Settings />
                 </Suspense>
-              }
-            />
-            <Route
-              path="*"
-              element={
-                <Suspense fallback={<TableLoader />}>
-                  <Error404 />
-                </Suspense>
-              }
-            />
-          </Routes>
+              </Route>
+              <Route path="*">
+                <Error404 />
+              </Route>
+            </Switch>
+          </div>
         </div>
-      </div>
-    </Router>
+      </Router>
+    </Suspense>
   )
 }
 

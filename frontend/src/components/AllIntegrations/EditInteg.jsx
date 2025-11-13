@@ -26,7 +26,7 @@ export default function EditInteg({ allIntegURL, formFields, setIntegration, int
           &nbsp;Back
         </Link>
         <div className="w-8 txt-center">
-          <b className="f-lg">{integrations[id]?.type}</b>
+          <b className="f-lg">{integrations[id].type}</b>
           <div>{__('Integration Settings', 'bitffzc')}</div>
         </div>
       </div>
