@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 
 import { useState } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { __ } from '../../../Utils/i18nwrap'
 import SnackMsg from '../../Utilities/SnackMsg'
 import { saveIntegConfig } from '../IntegrationHelpers/IntegrationHelpers'
@@ -10,7 +10,7 @@ import { checkMappedFields, handleInput } from './ZohoCRMCommonFunc'
 import ZohoCRMIntegLayout from './ZohoCRMIntegLayout'
 
 function EditZohoCRM({ formFields, setIntegration, integrations, allIntegURL }) {
-  const history = useHistory()
+  const navigate = useNavigate()
   const { id, formID } = useParams()
 
   const [crmConf, setCrmConf] = useState({ ...integrations[id] })
@@ -30,7 +30,7 @@ function EditZohoCRM({ formFields, setIntegration, integrations, allIntegURL }) 
       setIntegration,
       allIntegURL,
       crmConf,
-      history,
+      navigate,
       id,
       1
     )
@@ -39,7 +39,7 @@ function EditZohoCRM({ formFields, setIntegration, integrations, allIntegURL }) 
       if (res.success) {
         setSnackbar({ show: true, msg: res?.data })
         setTimeout(() => {
-          history.push(allIntegURL)
+          navigate(allIntegURL)
         }, 200)
       } else {
         setSnackbar({ show: true, msg: res?.data || res })

@@ -7,7 +7,7 @@ export const saveIntegConfig = async (
   setIntegration,
   allIntegURL,
   confTmp,
-  history,
+  navigate,
   index,
   edit
 ) => {

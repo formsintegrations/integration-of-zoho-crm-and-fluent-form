@@ -1,7 +1,7 @@
 import { __ } from '../../../Utils/i18nwrap'
 import { useEffect, useState } from 'react'
 import 'react-multiple-select-dropdown-lite/dist/index.css'
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import SnackMsg from '../../Utilities/SnackMsg'
 import Steps from '../../Utilities/Steps'
 import { setGrantTokenResponse, saveIntegConfig } from '../IntegrationHelpers/IntegrationHelpers'
@@ -11,7 +11,7 @@ import { checkMappedFields, handleInput, refreshModules } from './ZohoCRMCommonF
 import ZohoCRMIntegLayout from './ZohoCRMIntegLayout'
 
 function ZohoCRM({ formFields, setIntegration, integrations, allIntegURL }) {
-  const history = useHistory()
+  const navigate = useNavigate()
   const { formID } = useParams()
   const [isLoading, setisLoading] = useState(false)
   const [step, setstep] = useState(1)
@@ -36,11 +36,11 @@ function ZohoCRM({ formFields, setIntegration, integrations, allIntegURL }) {
   }, [])
 
   const saveConfig = () => {
-    const resp = saveIntegConfig(formID, integrations, setIntegration, allIntegURL, crmConf, history)
+    const resp = saveIntegConfig(formID, integrations, setIntegration, allIntegURL, crmConf, navigate)
     resp.then(res => {
       if (res.success) {
         setSnackbar({ show: true, msg: res.data?.msg })
-        history.push(allIntegURL)
+        navigate(allIntegURL)
       } else {
         setSnackbar({ show: true, msg: res.data || res })
       }

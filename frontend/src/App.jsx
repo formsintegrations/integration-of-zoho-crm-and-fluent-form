@@ -4,7 +4,7 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 
 import { lazy, Suspense } from 'react'
-import { BrowserRouter as Router, Switch, Route, NavLink, Link } from 'react-router-dom'
+import { HashRouter as Router, Routes, Route, NavLink, Link } from 'react-router-dom'
 import './resource/sass/app.scss'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { __ } from './Utils/i18nwrap'
@@ -23,7 +23,7 @@ function App() {
 
   return (
     <Suspense fallback={<Loader className="g-c" style={loaderStyle} />}>
-      <Router basename={typeof bitffzc !== 'undefined' ? bitffzc.baseURL : '/'}>
+      <Router>
         <div className="Btcd-App">
           <div className="nav-wrp">
             <div className="flx">
@@ -34,10 +34,13 @@ function App() {
                 </Link>
               </div>
               <nav className="top-nav ml-2">
-                <NavLink exact to="/" activeClassName="app-link-active">
+                <NavLink to="/" className={({ isActive }) => (isActive ? 'app-link-active' : '')}>
                   {__('My Forms', 'bitffzc')}
                 </NavLink>
-                <NavLink exact to="/settings" activeClassName="app-link-active">
+                <NavLink
+                  to="/settings"
+                  className={({ isActive }) => (isActive ? 'app-link-active' : '')}
+                >
                   {__('Settings', 'bitffzc')}
                 </NavLink>
               </nav>
@@ -45,26 +48,33 @@ function App() {
           </div>
 
           <div className="route-wrp">
-            <Switch>
-              <Route exact path="/">
-                <Suspense fallback={<TableLoader />}>
-                  <AllForms />
-                </Suspense>
-              </Route>
-              <Route path="/form/:formID/integrations">
-                <Suspense fallback={<Loader className="g-c" style={loaderStyle} />}>
-                  <Integrations />
-                </Suspense>
-              </Route>
-              <Route path="/settings">
-                <Suspense fallback={<Loader className="g-c" style={loaderStyle} />}>
-                  <Settings />
-                </Suspense>
-              </Route>
-              <Route path="*">
-                <Error404 />
-              </Route>
-            </Switch>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Suspense fallback={<TableLoader />}>
+                    <AllForms />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/form/:formID/integrations/*"
+                element={
+                  <Suspense fallback={<Loader className="g-c" style={loaderStyle} />}>
+                    <Integrations />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/settings"
+                element={
+                  <Suspense fallback={<Loader className="g-c" style={loaderStyle} />}>
+                    <Settings />
+                  </Suspense>
+                }
+              />
+              <Route path="*" element={<Error404 />} />
+            </Routes>
           </div>
         </div>
       </Router>

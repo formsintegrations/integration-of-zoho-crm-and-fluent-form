@@ -1,6 +1,6 @@
 /* eslint-disable-next-line no-undef */
 import { useState, useEffect } from 'react'
-import { Link, Route, Switch, useHistory, useParams, useRouteMatch } from 'react-router-dom'
+import { Link, Route, Routes, useNavigate, useParams } from 'react-router-dom'
 import { __ } from '../Utils/i18nwrap'
 import zohoCRM from '../resource/img/integ/crm.svg'
 import bitsFetch from '../Utils/bitsFetch'
@@ -21,10 +21,9 @@ function Integrations() {
   const [showMdl, setShowMdl] = useState(false)
   const [confMdl, setconfMdl] = useState({ show: false })
   const [snack, setSnackbar] = useState({ show: false })
-  const { path, url } = useRouteMatch()
-  const allIntegURL = url
-  const history = useHistory()
+  const navigate = useNavigate()
   const { formID } = useParams()
+  const allIntegURL = `/form/${formID}/integrations`
   const integs = [{ type: 'Zoho CRM', logo: zohoCRM }]
 
   const [availableIntegs, setAvailableIntegs] = useState(integs)
@@ -107,7 +106,7 @@ function Integrations() {
 
   const setNewInteg = type => {
     closeIntegModal()
-    history.push(`${allIntegURL}/new/${type}`)
+    navigate(`${allIntegURL}/new/${type}`)
   }
 
   const closeIntegModal = () => {
@@ -131,105 +130,118 @@ function Integrations() {
         body={confMdl.body}
         action={confMdl.action}
       />
-      <Switch>
-        <Route exact path={path}>
-          <h2>{__('Integrations', 'bitffzc')}</h2>
-          <div className="flx flx-wrp">
-            {integrations.length === 0 && (
-              <div
-                role="button"
-                className="btcd-inte-card flx flx-center add-inte mr-4 mt-3"
-                tabIndex="0"
-                onClick={() => setNewInteg('Zoho CRM')}
-                onKeyPress={() => setNewInteg('Zoho CRM')}
-              >
-                <div>+</div>
+      <Routes>
+        <Route
+          path=""
+          element={
+            <>
+              <h2>{__('Integrations', 'bitffzc')}</h2>
+              <div className="flx flx-wrp">
+                {integrations.length === 0 && (
+                  <div
+                    role="button"
+                    className="btcd-inte-card flx flx-center add-inte mr-4 mt-3"
+                    tabIndex="0"
+                    onClick={() => setNewInteg('Zoho CRM')}
+                    onKeyPress={() => setNewInteg('Zoho CRM')}
+                  >
+                    <div>+</div>
+                  </div>
+                )}
+
+                {integrations.map((inte, i) => (
+                  <div role="button" className="btcd-inte-card mr-4 mt-3" key={`inte-${i + 3}`}>
+                    <SingleToggle2
+                      className="flx mt-2 pos-abs r-n-1 z-9"
+                      action={e => handleStatus(e, i)}
+                      checked={inte.status == 1 ? true : false}
+                    />
+                    {getLogo('Zoho CRM')}
+                    <div className="btcd-inte-atn txt-center">
+                      <Link
+                        to={`${allIntegURL}/edit/${i}`}
+                        className="btn btcd-btn-o-blue btcd-btn-sm mr-2 tooltip pos-rel"
+                        style={{ '--tooltip-txt': `'${__('Edit', 'bitffzc')}'` }}
+                        type="button"
+                      >
+                        <EditIcn size="15   " />
+                      </Link>
+                      <button
+                        className="btn btcd-btn-o-blue btcd-btn-sm mr-2 tooltip pos-rel"
+                        style={{ '--tooltip-txt': `'${__('Delete', 'bitffzc')}'` }}
+                        onClick={() => inteDelConf(i)}
+                        type="button"
+                      >
+                        <span className="btcd-icn icn-trash-2" />
+                      </button>
+                      {typeof integs.find(int => int.type === inte.type)?.info !== 'boolean' && (
+                        <Link
+                          to={`${allIntegURL}/info/${i}`}
+                          className="btn btcd-btn-o-blue btcd-btn-sm mr-2 tooltip pos-rel"
+                          style={{ '--tooltip-txt': `'${__('Info', 'bitffzc')}'` }}
+                          type="button"
+                        >
+                          <span className="btcd-icn icn-information-outline" />
+                        </Link>
+                      )}
+                      <Link
+                        to={`${allIntegURL}/log/${i}`}
+                        className="btn btcd-btn-o-blue btcd-btn-sm tooltip pos-rel"
+                        style={{ '--tooltip-txt': `'${__('Log', 'bitffzc')}'` }}
+                        type="button"
+                      >
+                        <TimeIcn size="15" />
+                      </Link>
+                    </div>
+                    <div className="txt-center body w-10 py-1" title={`${inte.name} | ${inte.type}`}>
+                      <div>{inte.name}</div>
+                      <small className="txt-dp">{inte.type}</small>
+                    </div>
+                  </div>
+                ))}
               </div>
-            )}
+            </>
+          }
+        />
 
-            {integrations.map((inte, i) => (
-              <div role="button" className="btcd-inte-card mr-4 mt-3" key={`inte-${i + 3}`}>
-                <SingleToggle2
-                  className="flx mt-2 pos-abs r-n-1 z-9"
-                  action={e => handleStatus(e, i)}
-                  checked={inte.status == 1 ? true : false}
-                />
-                {getLogo('Zoho CRM')}
-                <div className="btcd-inte-atn txt-center">
-                  <Link
-                    to={`${allIntegURL}/edit/${i}`}
-                    className="btn btcd-btn-o-blue btcd-btn-sm mr-2 tooltip pos-rel"
-                    style={{ '--tooltip-txt': `'${__('Edit', 'bitffzc')}'` }}
-                    type="button"
-                  >
-                    <EditIcn size="15   " />
-                  </Link>
-                  <button
-                    className="btn btcd-btn-o-blue btcd-btn-sm mr-2 tooltip pos-rel"
-                    style={{ '--tooltip-txt': `'${__('Delete', 'bitffzc')}'` }}
-                    onClick={() => inteDelConf(i)}
-                    type="button"
-                  >
-                    <span className="btcd-icn icn-trash-2" />
-                  </button>
-                  {typeof integs.find(int => int.type === inte.type)?.info !== 'boolean' && (
-                    <Link
-                      to={`${allIntegURL}/info/${i}`}
-                      className="btn btcd-btn-o-blue btcd-btn-sm mr-2 tooltip pos-rel"
-                      style={{ '--tooltip-txt': `'${__('Info', 'bitffzc')}'` }}
-                      type="button"
-                    >
-                      <span className="btcd-icn icn-information-outline" />
-                    </Link>
-                  )}
-                  <Link
-                    to={`${allIntegURL}/log/${i}`}
-                    className="btn btcd-btn-o-blue btcd-btn-sm tooltip pos-rel"
-                    style={{ '--tooltip-txt': `'${__('Log', 'bitffzc')}'` }}
-                    type="button"
-                  >
-                    <TimeIcn size="15" />
-                  </Link>
-                </div>
-                <div className="txt-center body w-10 py-1" title={`${inte.name} | ${inte.type}`}>
-                  <div>{inte.name}</div>
-                  <small className="txt-dp">{inte.type}</small>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Route>
-
-        <Route path={`${path}/new/:integUrlName`}>
-          <NewInteg
-            allIntegURL={allIntegURL}
-            formFields={formFields}
-            integrations={integrations}
-            setIntegration={setIntegration}
-          />
-        </Route>
-
-        {integrations?.length && (
-          <Route exact path={`${path}/edit/:id`}>
-            <EditInteg
+        <Route
+          path="new/:integUrlName/*"
+          element={
+            <NewInteg
               allIntegURL={allIntegURL}
               formFields={formFields}
               integrations={integrations}
               setIntegration={setIntegration}
             />
-          </Route>
+          }
+        />
+
+        {integrations?.length && (
+          <Route
+            path="edit/:id"
+            element={
+              <EditInteg
+                allIntegURL={allIntegURL}
+                formFields={formFields}
+                integrations={integrations}
+                setIntegration={setIntegration}
+              />
+            }
+          />
         )}
         {integrations && integrations.length > 0 && (
           <>
-            <Route exact path={`${path}/info/:id`}>
-              <IntegInfo allIntegURL={allIntegURL} integrations={integrations} />
-            </Route>
-            <Route exact path={`${path}/log/:id`}>
-              <Log allIntegURL={allIntegURL} integrations={integrations} />
-            </Route>
+            <Route
+              path="info/:id"
+              element={<IntegInfo allIntegURL={allIntegURL} integrations={integrations} />}
+            />
+            <Route
+              path="log/:id"
+              element={<Log allIntegURL={allIntegURL} integrations={integrations} />}
+            />
           </>
         )}
-      </Switch>
+      </Routes>
     </div>
   )
 }
