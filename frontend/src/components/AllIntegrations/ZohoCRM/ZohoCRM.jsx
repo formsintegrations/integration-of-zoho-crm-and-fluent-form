@@ -21,9 +21,9 @@ function ZohoCRM({ formFields, setIntegration, integrations, allIntegURL }) {
   const [crmConf, setCrmConf] = useState({
     name: 'Zoho CRM API',
     type: 'Zoho CRM',
-    clientId: process.env.NODE_ENV === 'development' ? '1000.BWH0YC45BQ9PQMTZGKW5J3VUKUO18N' : '',
+    clientId: process.env.NODE_ENV === 'development' ? '1000.4O9UALQT72EAKFVRPQ4JIV75IG1QTI' : '',
     clientSecret:
-      process.env.NODE_ENV === 'development' ? 'a01e54cfa1bb3de6283fbbb4d0d5ccee7404b29847' : '',
+      process.env.NODE_ENV === 'development' ? 'c78600a170297155f0d3740486d9e2c16491cf1490' : '',
     module: '',
     layout: '',
     field_map: [{ formField: '', zohoFormField: '' }],
