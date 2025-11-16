@@ -4,7 +4,7 @@ Tags: Zoho CRM, fluent forms, Zoho, API, Leads, CRM, fluent forms integration, C
 Requires at least: 5.0
 Tested up to: 6.8.3
 Requires PHP: 5.6
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 License: GPLv2 or later
 
 == Description ==
